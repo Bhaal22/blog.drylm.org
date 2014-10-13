@@ -100,7 +100,7 @@ NAVIGATION_LINKS = {
 	('/archive.html', 'Archives', 'icon-folder-open-alt'),
 	('/categories/index.html', 'Tags', 'icon-tags'),
 	('/rss.xml', 'RSS', 'icon-rss'),
-	('http://www.drylm.org/jonathan.muller', 'CV', 'icon-user'),
+	('http://jonathan.muller.drylm.org', 'CV', 'icon-user'),
 	('https://twitter.com/Bhaal22', 'My Twitter', 'icon-twitter'),
         ('https://github.com/Bhaal22', 'My Github', 'icon-github'),
     ),
