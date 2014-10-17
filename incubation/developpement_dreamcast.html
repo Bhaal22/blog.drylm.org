@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//FR" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+  <title>Dreamcast</title>
+  <link href="diamond.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<p class="titre">Mise en place et &eacute;tude du d&eacute;veloppement Dreamcast</p>
+
+<p class="signature">Jonathan Muller&nbsp;-&nbsp;jonathan.muller@yahoo.fr</p>
+
+<p class="chapeau">C'est lors d'une install party &agrave; Metz que j'ai rencontr&eacute; une personne qui lan&ccedil;ait un rendu de Tux sur un &eacute;cran g&eacute;ant &agrave; partir de sa Dreamcast. C'est de l&agrave; que m'est venue l'id&eacute;e de d&eacute;velopper pour cette console que j'adore.</p>
+
+<h1>1. Introduction &agrave; la Dreamcast</h1>
+
+<p class="normal">Qui ne conna&icirc;t pas des titres comme SoulCalibur, Skies of Arcadia, Grandia 2, Sonic adventure, ou encore le magnifique Shenmue .. Vous me suivez, je vais vous parler de la Dreamcast.
+Derni&egrave;re console en titre de Sega(tm), cette merveilleuse console &agrave; la mort pr&eacute;matur&eacute;e fait encore parler d'elle au sein d'une communaut&eacute; tr&egrave;s active sur Internet.
+En effet, de nombreuses personnes ont d&eacute;cid&eacute; de programmer des jeux, des utilitaires, des &eacute;mulateurs sur cette console. Je pourrais citer le tr&egrave;s c&eacute;l&egrave;bre ScummVM
+disponible &eacute;galement sur PC et qui permet de lancer la plupart des jeux de Lucas Art(tm) (Monkey Island, Day of the tantacle, Sam &amp; Max ...), ou encore des &eacute;mulateurs (cpc, megadrive,
+n&eacute;o-g&eacute;o en cours de d&eacute;veloppement).<br /> Parmi les jeux <span class="menu">Homebrew</span>, pour ma part, deux se d&eacute;tachent du lot : Feet of fury [1] et Alice Dreams [2] .
+On peut dire que la communaut&eacute; est vraiment productive et motiv&eacute;e.
+J'en arrive au but de cet article : mettre en place un environnement de compilation/d&eacute;veloppement pour Dreamcast au sein d'un syst&egrave;me GNU/Linux. Des packs windows existent pour l'environnement
+de d&eacute;veloppement dev-cpp, mais je n'aborderai pas ce type d'installation.<br />Avant toute explication concernant l'installation de l'environnement,
+passons en revue quelques informations techniques de la console.</p>
+
+<h1>2. Historique et Hardware</h1>
+
+<p class="normal"><img src="Dreamcast.png">///insertion image : Dreamcast.png///</p>
+<p class="legende">Figure 1&nbsp;: La Dreamcast, sa manette et la carte m&eacute;moire</p>
+
+<p class="normal">Sortie en novembre 1998 au Japon, la Dreamcast est disponible en Europe et aux Etats-unis &agrave; partir de No&euml;l 1999. Sega(tm) frappe fort avec sa nouvelle console 128 bits (contre 32
+pour la playstation).</p>
+
+
+<table>
+<tbody>
+<tr><td><p class="tab_entete">Composant</p></td><td><p class="tab_entete">Description</p></td></tr>
+<tr><td><p class="normal">Micro-Processeur</p></td><td><p class="normal">RISC Hitachi SH4 128 bits 200 Mhz, 360 MIPS, 1,4 GFLOPS</p></td></tr>
+<tr><td><p class="normal">Processeur graphique</p></td><td><p class="normal">NEC PowerVR (plus de 3 millions de polygones par secondes)</p></td></tr>
+<tr><td><p class="normal">Processeur sonore</p></td><td><p class="normal">Yamaha RISC 32 bits (64 canaux ADPCM)</p></td></tr>
+<tr><td><p class="normal">M&eacute;moire</p></td><td><p class="normal">16 Mo (64Mbit SDRAMx2)</p></td></tr>
+<tr><td><p class="normal">Syst&egrave;me d'exploitation</p></td><td><p class="normal">Version optimis&eacute;e de Windows CE</p></td></tr>
+<tr><td><p class="normal">Lecteur CD</p></td><td><p class="normal">12x</p></td></tr>
+<tr><td><p class="normal">Couleurs</p></td><td><p class="normal">16,7 millions</p></td></tr>
+<tr><td><p class="normal">Carte m&eacute;moire</p></td><td><p class="normal">V.M.S.</p></td></tr>
+<tr><td><p class="normal">Taille</p></td><td><p class="normal">190 x 195 x 78 mm</p></td></tr>
+<tr><td><p class="normal">Poids</p></td><td><p class="normal">2 kg</p></td></tr>
+</tbody>
+</table>
+
+<p class="normal">A ce sujet, il existe un tr&egrave;s bon article paru en 2004, disponible sur le site de jeux videos : jeuxvideos.com [3].</p>
+
+
+
+<h1>3. Introduction</h1>
+
+<p class="normal">Le d&eacute;veloppement amateur pour les diff&eacute;rentes consoles s'appelle : le <span class="menu">Homebrew</span>.
+Il est bien &eacute;videmment possible de programmer sur Dreamcast &agrave; condition de disposer des bons outils : </p>
+
+<p class="normal">* un kit de d&eacute;veloppement ; </p>
+<p class="normal">* un moyen de transf&eacute;rer les&nbsp;donn&eacute;es du PC vers la console afin de tester les programmes que nous aurons &eacute;crits.</p>
+
+<p class="normal"> Les diff&eacute;rentes manipulations seront d&eacute;taill&eacute;es ci-apr&egrave;s. Fort heureusement, il existe de nombreux logiciels disponibles sur Dreamcast. Le m&eacute;canisme de cr&eacute;ation d'un logiciel est le suivant : </p>
+
+<p class="normal"> * compiler son projet avec la biblioth&egrave;que KOS (Kallisti OS) [4] &eacute;crite par Dan Potter. Des snapshots Subversion sont disponibles ici [5] (cf la proc&eacute;dure d'installation est d&eacute;taill&eacute;e dans le chapitre suivant) ;</p>
+<p class="normal"> * 3 choix s'offrent &agrave; nous pour tester notre programme :</p>
+<p class="normal">&nbsp;&nbsp;&nbsp; * envoyer le programme via le port s&eacute;rie de la Dreamcast. Pour ce faire, il faudra se fabriquer ou s'acheter un <span class="menu">coder cable</span> ;</p>
+<p class="normal">&nbsp;&nbsp;&nbsp; * rendre le binaire "bootable" au format Dreamcast, le graver et mettre le CD dans le lecteur de la console ;</p>
+<p class="normal">&nbsp;&nbsp;&nbsp; * rendre le binaire "bootable" et le tester sur un &eacute;mulateur. Malheureusement, il existe peu d'&eacute;mulateurs. Un seul est disponible : Chankast [6] qui apparemment fonctionnerait plut&ocirc;t bien, l'inconv&eacute;nient majeur &eacute;tant qu'il n'est disponible que sous Windows. J'ai bien essay&eacute; de le lancer via Wine [7], mais sans r&eacute;el succ&egrave;s.</p>
+
+<p class="normal">Avant de passer &agrave; la partie technique de l'article, quelques informations p&eacute;cuni&egrave;res pour ceux qui souhaitent se lancer dans le d&eacute;veloppement Dreamcast : </p>
+
+<p class="normal"> - une console d'occasion (manette incluse) se trouve pour une cinquantaine d'euros chez n'importe quel revendeur ;</p>
+<p class="normal"> - le <span class="menu">coder cable</span> se trouve sur diff&eacute;rents sites sp&eacute;cialis&eacute;s pour vingt, vingt-cinq euros environ. </p>
+
+
+<p class="normal">Au final, on peut se construire une plateforme de d&eacute;veloppement on ne peut plus int&eacute;ressante pour soixante dix euros environ. Passons maintenant aux choses s&eacute;rieuses : l'installation de l'environnement compilation/d&eacute;veloppement sur notre GNU/Linux pr&eacute;f&eacute;r&eacute;.</p>
+
+
+
+<h1>4. Kallisti Operating system (KOS)</h1>
+
+<p class="normal">KOS est l'acronyme de Kallisti Operating System qui sera d&eacute;sign&eacute; ainsi dans la suite de l'article. Ce syst&egrave;me d'exploitation est consid&eacute;r&eacute; comme &eacute;tant <span class="menu">la</span> r&eacute;f&eacute;rence pour le d&eacute;veloppement Dreamcast. C'est un pseudo syst&egrave;me temps r&eacute;el pour les consoles de jeux vid&eacute;os : </p>
+
+<p class="normal"> * GBA (Game Boy Advance)</p>
+<p class="normal"> * Ps2 </p>
+<p class="normal"> * Dreamcast</p>
+
+<p class="normal">Son &eacute;tat d'avancement &eacute;tant le plus important, principalement gr&acirc;ce au grand nombre de gens investis sur cette console, le port Dreamcast est le plus utilis&eacute;. Il peut &ecirc;tre assimil&eacute; &agrave; un noyau, comme Linux ou BSD, que nous allons utiliser via une biblioth&egrave;que (libkallisti.a) qui sera li&eacute;e &agrave; nos propres programmes. Il est aussi possible d'&eacute;crire de nouveaux modules qui seront li&eacute;s dynamiquement &agrave; notre programme. Nous pouvons alors envisager d'ajouter de nouveaux syst&egrave;mes de fichiers, des pilotes de p&eacute;riph&eacute;riques, etc. Les possibilit&eacute;s sont infinies.<br />
+KOS &eacute;tant un pseudo syst&egrave;me temps r&eacute;el, il est &eacute;vident qu'il poss&egrave;de des syst&egrave;mes de fichiers particuliers. En effet, on peut : </p>
+
+<p class="normal"> * lire sur le cd-rom (acc&egrave;s par /cd) ;</p>
+<p class="normal"> * &eacute;crire sur l'ordinateur reli&eacute; par le <span class="menu">coder cable</span> (acc&egrave;s par /pc ; pratique pour faire des impressions d'&eacute;cran) ;</p>
+<p class="normal"> * lire sur le romdisk (acc&egrave;s par /rd). Ce syst&egrave;me de fichiers est directement li&eacute; au binaire du programme lors de la compilation (sa taille est limit&eacute;e &agrave; 16 Mo).</p>
+
+<p class="normal"> KOS dispose aussi de pilotes de p&eacute;riph&eacute;riques pour le clavier, la souris, les manettes et la carte r&eacute;seau (10/100Mbits). Assez de th&eacute;orie, passons &agrave; la pratique avec l'installation et l'utilisation sur quelques exemples de cette fameuse biblioth&egrave;que.</p>
+
+<p class="normal">Tout d'abord, r&eacute;cup&eacute;rons les sources de KOS : </p>
+
+<p class="normal"> * kos-ports : port de diff&eacute;rentes biblioth&egrave;ques (jpeg, png, ogg, mp3, ...)</p>
+<p class="normal">&nbsp;&nbsp;&nbsp;&nbsp;http://gamedev.allusion.net/svn/snapshots/kos-ports-snapshot-20050618.tar.bz2</p>
+<p class="normal"> * kos-snapshot : sources de Kos</p>
+<p class="normal">&nbsp;&nbsp;&nbsp;&nbsp;http://gamedev.allusion.net/svn/snapshots/kos-snapshot-20050618.tar.bz2</p>
+
+
+<p class="normal"> Il faut tout d'abord mettre en place un syst&egrave;me de compilation crois&eacute;e (cross-compiler ou toolchain en anglais) afin d'offrir la possibilit&eacute; de compiler sur PC et d'ex&eacute;cuter sur Dreamcast. Deux compilateurs crois&eacute;s seront n&eacute;cessaires :</p>
+<p class="normal"> * le premier afin de g&eacute;n&eacute;rer du code pour le processeur SH-4 ;</p>
+<p class="normal"> * le second afin de g&eacute;n&eacute;rer du code pour le processeur ARM charg&eacute; de s'occuper du son.</p>
+
+<p class="normal"> Attention :&nbsp;un probl&egrave;me connu des&nbsp;versions de gcc sup&eacute;rieures &agrave; 3.0.4 nous obligent &agrave; utiliser une version 3.0.4 ou inf&eacute;rieure pour le cross-compilateur &agrave; destination du processeur&nbsp;ARM. En ce qui concerne le compilateur crois&eacute; &agrave; destination du processeur SH-4, j'ai utilis&eacute; une version 3.4.3 avec des patchs&nbsp; concernant la gestion des threads (ces derniers seront fournis dans une archive .tar.gz). Une mise en place incorrecte de ces&nbsp;deux compilateurs crois&eacute;s vous assurera de magnifiques "kernel panic", pour peu que&nbsp;vos programmes utilisent les biblioth&egrave;ques sonores.</p>
+<p class="normal">Liste des archives &agrave; r&eacute;cup&eacute;rer&nbsp; [8]: </p>
+
+<p class="normal"> * gcc-core-3.4.3.tar.bz2</p>
+<p class="normal"> * gcc-g++-3.4.3.tar.bz2</p>
+<p class="normal"> * gcc-core-3.0.4.tar.gz (pour ARM)</p>
+<p class="normal"> * newlib-1.12.0.tar.gz</p>
+<p class="normal"> * binutils-2.15.tar.bz2</p>
+<p class="normal"> * binutils-2.11.2.tar.gz (pour ARM)</p>
+<p class="normal"> * kos-ports-snapshot-20050618.tar.bz2 kos-snapshot-20050618.tar.bz2</p>
+
+<p class="normal">Je vous mets &agrave; disposition un script servant &agrave; construire les compilateurs crois&eacute;s [9] &agrave; partir de ces archives : dc-chain-0.1.tgz (les patchs y sont inclus)</p>
+
+<p class="normal">Copier alors ce script dans le r&eacute;pertoire de votre convenance, par&nbsp; exemple&nbsp;<span class="menu">/tmp/testKOS.</span></p>
+
+<p class="normal"> * tar xzf dc-chain-0.1.tgz ;</p>
+<p class="normal"> * cd dc-chain-0.1 ;</p>
+<p class="normal"> * copier "gcc-core-3.4.3.tar.bz2" "gcc-g++-3.4.3.tar.bz2" "newlib-1.12.0.tar.gz" "binutils-2.15.tar.bz2" "kos-ports-snapshot-20050618.tar.bz2" "kos-snapshot-20050618.tar.bz2" dans ce r&eacute;pertoire ;</p>
+<p class="normal"> * for in `ls -1 *.bz2`; do tar xjf $i; done;</p>
+<p class="normal"> * tar xzf newlib-1.12.0.tar.gz</p>
+
+
+
+<h2>4.1 Modification du Makefile</h2>
+
+<p class="normal">Modifier le makefile, notamment les chemins d'installation des compilateurs crois&eacute;s : variables <span class="menu">sh_prefix</span> et <span class="menu">arm_prefix</span>, par exemple :</p> 
+
+<p class="normal"> * sh_prefix  := /tmp/testKOS/dc-chain-0.1/dc/$(sh_target)</p>
+<p class="normal"> * arm_prefix := /tmp/testKOS/dc-chain-0.1/dc/$(arm_target)</p>
+
+<p class="normal">Renseigner&nbsp;les bonnes versions des logiciels &agrave; compiler pour les variables : <span class="menu">binutils_ver</span>, <span class="menu">gcc_ver</span>, <span class="menu">newlib_ver</span>.<br /> Enfin, mettre &agrave; jour la variable : <span class="menu">kos_root</span> (cette variable repr&eacute;sente le chemin o&ugrave; se trouvent les r&eacute;pertoires de KallistiOS. En l'occurence, si vous avez suivi la manipulation ci-dessus, la valeur de cette variable est : <span class="menu">/tmp/testKOS/dc-chain-0.1</span>.</p>
+
+<p class="normal">Attention : j'ai not&eacute; des probl&egrave;mes de compilation lorque j'essayais de construire le toolchain en utilisant gcc-4.0 ou sup&eacute;rieur. C'est pour cela que je force l'utlisation de gcc-3.4 et g++-3.4 en assignant les variables CC et CXX dans le shell courant de la mani&egrave;re suivante :</p>
+
+<p class="normal"> * export CC=/usr/bin/gcc-3.4 ;</p>
+<p class="normal"> * export CXX=/usr/bin/g++-3.4 ;</p>
+
+<p class="normal">Je vous laisse le soin d'adapter ces manipulations en fonction de&nbsp;la configuration de votre syst&egrave;me. Une fois ces diff&eacute;rents r&eacute;glages effectu&eacute;s, entrer les commandes suivantes :</p>
+
+<p class="normal"> * mkdir dc (r&eacute;pertoire qui va accueillir&nbsp;les binaires des compilateurs) ;</p>
+<p class="normal"> * make patch ;</p>
+<p class="normal"> * make build-sh4 (vous pouvez aller vous chercher un petit caf&eacute; ou un th&eacute;. Il m'a fallu environ 15 minutes sur un Athlon 3000).</p>
+
+<p class="normal">Pour construire le toolchain ARM, il suffit de changer dans le makefile, les versions de gcc de 3.4.3 vers 3.0.4 et de binutils de 2.15 &agrave; 2.11.2 et de lancer :</p>
+
+<p class="normal"> * make arm-build (environ 5 minutes sur un Athlon 3000+)</p>
+
+<p class="normal">Il n'y a pas besoin d'appliquer de patch.</p>
+
+<p class="normal">Les deux toolchains sont maintenant construits, nous allons passer &agrave; la compilation proprement dite de KOS (ouf !) :</p>
+  <p class="normal"> * cd kos</p>
+  <p class="normal"> * cp doc/environ.sh.sample ./environ.sh</p>
+  <p class="normal"> * &eacute;diter environ.sh&nbsp;avec votre &eacute;diteur de texte pr&eacute;f&eacute;r&eacute; </p>
+    <p class="normal">&nbsp;&nbsp;&nbsp;&nbsp;- placer dans la&nbsp;variable KOS_BASE le chemin o&ugrave; est d&eacute;compress&eacute; le snapshot de KOS, par exemple : export KOS_BASE="/tmp/testKOS/dc-chain-0.1/kos/"</p>
+    <p class="normal">&nbsp;&nbsp;&nbsp;&nbsp;- placer dans la variable KOS_CC_BASE le r&eacute;pertoire d'installation du compilateur sh-4, par exemple : export KOS_CC_BASE="/tmp/testKOS/dc-chain-0.1/dc/sh-elf"</p>
+    <p class="normal">&nbsp;&nbsp;&nbsp;&nbsp;- KOS_CC_PREFIX= sh-elf</p>
+    <p class="normal">&nbsp;&nbsp;&nbsp;&nbsp;- DC_ARM_BASE = export DC_ARM_BASE="/tmp/testKOS/dc-chain-0.1/dc/arm-elf"</p>
+    <p class="normal">&nbsp;&nbsp;&nbsp;&nbsp;- DC_ARM_PREFIX = arm-elf</p>
+  <p class="normal"> * &nbsp;./environ.sh (inclus toutes ces variables dans le shell courant).</p>
+
+<p class="normal">Les variables que nous avons renseign&eacute;es sont utilis&eacute;es par KOS&nbsp;non seulement pour la compilation de la biblioth&egrave;que, mais aussi &agrave; chaque compilation de projets utilisant KOS. Il faudra donc r&eacute;aliser cette manipulation &agrave; chaque compilation,&nbsp; ou alors inclure ces variables dans son shell.</p>
+
+
+<h2>4.2 Compiler KOS</h2>
+
+<p class="normal">Il suffit de taper : make et v&eacute;rifier que tout se passe bien ;)</p>
+
+
+<h2>4.3 Compiler les biblioth&egrave;ques</h2>
+
+<p class="normal">Pour &ecirc;tre standard, l'id&eacute;al est de placer l'arborescence de ports de biblioth&egrave;ques au m&ecirc;me niveau que le r&eacute;pertoire d'installation de KOS. Dans mon exemple, j'ai compil&eacute; KOS dans <span class="menu">/tmp/testKOS/dc-chain-0.1/kos/</span>, j'ai donc plac&eacute; les biblioth&egrave;ques dans <span class="menu">/tmp/testKOS/dc-chain-0.1/kos-port</span>.</p>
+
+<p class="normal"> * tar xjf kos-ports-snapshot-20050409.tar.bz2</p>
+<p class="normal"> * cd kos-ports</p>
+<p class="normal"> * ln -s ../kos/addons/Makefile </p>
+<p class="normal"> * make</p>
+
+<p class="normal">Apr&egrave;s avoir&nbsp;construit un environnement de d&eacute;veloppement &agrave; destination de la console, nous allons mettre en place les outils de communication PC/Dreamcast.</p>
+
+
+<h2>4.4 Transfert de fichiers vers la Dreamcast</h2>
+
+<p class="normal">Le moyen le plus facile pour transf&eacute;rer des donn&eacute;es entre le PC et la Dreamcast&nbsp;est de se procurer ou fabriquer ce que l'on appelle un <span class="menu">coder cable</span>. Des informations sur sa fabrication sont disponibles sur&nbsp;cette page [10].</p>
+
+<p class="normal">N'ayant aucune connaissance en &eacute;lectronique, je me le suis achet&eacute;. C'est un simple c&acirc;ble s&eacute;rie, nous aurons donc besoin d'outils logiciels de transfert entre le pc et la console, &agrave; savoir : dcload/dc-tool. Le site [11] sur lequel se trouvent ces programmes est un site majeur de l'activit&eacute; autour de notre console bien aim&eacute;e. On y trouve toutes formes de sources, binaires, documentation ayant un proche rapport avec la console. </p>
+<p class="normal">La premi&egrave;re phase est de graver un cd-rom et de d&eacute;marrer dessus avec sa Dreamcast. Ce CD-ROM met la console en &eacute;coute sur le port s&eacute;rie. Cette derni&egrave;re s'occupe une fois le transfert termin&eacute;, d'ex&eacute;cuter le programme. La Dreamcast joue alors le r&ocirc;le de serveur et le pc le r&ocirc;le de client. T&eacute;l&eacute;chargeons alors les programmes respectifs :</p>
+
+<h3>4.4.1 C&ocirc;t&eacute; serveur :</h3>
+
+  <p class="normal"> * wget http://www.boob.co.uk/files/dcload-1.0.3-1st_read.zip</p>
+  <p class="normal"> * unzip dcload-1.0.3-1st_read.zip</p>
+  <p class="normal"> * wget http://www.boob.co.uk/files/dcload-1.0.3.tar.gz</p>
+  <p class="normal"> * unzip dcload-1.0.3.tar.gz</p>
+  <p class="normal"> * cd dcload-1.0.3/make-cd</p>
+  <p class="normal"> * ajuster le makefile :</p>
+
+<p class="normal">Attention, le fichier Makefile est assez ancien. Pour cr&eacute;er les pistes du cd-rom,&nbsp;une commande bas&eacute;e sur cdrecord est utilis&eacute;e. Il va falloir mettre &agrave; jour ce Makefile, car sur les noyaux de la g&eacute;n&eacute;ration 2.6, l'&eacute;mulation SCSI n'est plus utilis&eacute;e. Personnellement, j'ai modifi&eacute; ainsi : <span class="menu">CDRECORD = cdrecord dev=ATAPI:0,0,0 speed=8</span> et j'ai ajust&eacute; le chemin du fichier <span class="menu">1st_read.bin</span>. N'h&eacute;sitez pas &agrave; lire&nbsp;la section de l'article concernant la gravure de binaires afin de&nbsp;comprendre ce que nous sommes en train de faire ;).</p>
+
+  <p class="normal"> * make (les fichiers .bin sont dans la premi&egrave;re archive pr&eacute;c&eacute;demment t&eacute;l&eacute;charg&eacute;e).</p>
+
+<p class="normal"> Pour ceux qui n'ont pas envie de faire cette manipulation, je mets &agrave; disposition [9] l'image ISO de ce cd-rom de boot.</p>
+
+
+<h3>4.4.2 C&ocirc;t&eacute; client :</h3>
+
+  <p class="normal"> * wget http://www.boob.co.uk/files/dc-tool-serial-1.0.3-linux.gz</p>
+  <p class="normal"> * gunzip dc-tool-serial-1.0.3-linux.gz</p>
+  <p class="normal"> * chmod +x dc-tool-serial-1.0.3-linux</p>
+
+<p class="normal">Pour&nbsp;utiliser le programme c&ocirc;t&eacute; client : ./dc-tool-linux -x monFichier.elf</p>
+<p class="normal">Vous pouvez maintenant&nbsp; transf&eacute;rer des donn&eacute;es du pc vers la Dreamcast.</p>
+
+<p class="normal">Attention :&nbsp; il faut que l'utilisateur ex&eacute;cutant le programme <span class="menu">dc-tool-serial-1.0.3-linux</span> ait des droits d'&eacute;criture sur le p&eacute;riph&eacute;rique <span class="menu">/dev/ttyS0</span> (p&eacute;riph&eacute;rique utilis&eacute; par d&eacute;faut). Pour voir les param&egrave;tres utilis&eacute;s par <span class="menu">dc-tool-serial-1.0.3-linux</span>, il suffit de le lancer sans aucun argument, ce qui fait appara&icirc;tre&nbsp;ceci : </p>
+
+<pre>
+john@Odyssee$ dc-tool-serial-1.0.3-linux 
+
+dc-tool 1.0.3 by <andrewk@napalm-x.com>
+
+-x <filename> Upload and execute <filename>
+-u <filename> Upload <filename>
+-d <filename> Download to <filename>
+-a <address>  Set address to <address> (default: 0x8c010000)
+-s <size>     Set size to <size>
+-t <device>   Use <device> to communicate with dc (default: /dev/ttyS0)
+-b <baudrate> Use <baudrate> (default: 57600)
+-e            Try alternate 115200 (must also use -b 115200)
+-n            Do not attach console and fileserver
+-p            Use dumb terminal rather than console/fileserver
+-q            Do not clear screen before download
+-c <path>     Chroot to <path> (must be super-user)
+-i <isofile>  Enable cdfs redirection using iso image <isofile>
+-h            Usage information (you're looking at it)
+</pre>
+
+
+<p class="normal">La partie installation de l'environnement est enfin achev&eacute;e. La premi&egrave;re fois, j'en ai eu pour quelques heures,&nbsp;mais quel bonheur lorsque j'ai lanc&eacute; mon premier programme sur la console! Nous allons&nbsp;en cr&eacute;er quelques uns dans la partie suivante. Nous arrivons enfin aux choses passionnantes :).</p>
+
+
+<h1>5. Exemples</h1>
+
+<h2>5.1 Hello World</h2>
+
+<p class="normal">Un premier exemple clasique, qui ne va pas faire grand chose. Ce programme va &ecirc;tre lu par la console, et utiliser une propri&eacute;t&eacute; de KOS pour &eacute;crire sur la sortie standard de notre shell. KOS fournit une galerie assez compl&egrave;te d'exemples en partant de ce "Hello World" vers des choses beaucoup plus int&eacute;ressantes avec de la 3D, du son ...</p>
+
+<pre>
+01: #include &#139;kos.h&#155;
+02:
+03: <span class="code_em">/*</span>
+04: <span class="code_em">INIT_NONE		-- Pas d'auto init</span>
+05: <span class="code_em">INIT_IRQ		-- Activation des IRQs</span>
+06: <span class="code_em">INIT_THD_PREEMPT	-- Activation des threads pr&eacute;emptif</span>
+07: <span class="code_em">INIT_NET		-- Activation du r&eacute;seau</span>
+08: <span class="code_em">INIT_MALLOCSTATS	-- Activation d'un appel &agrave; malloc_stats() avant la fin de l'ex&eacute;cution du programme</span>
+09: <span class="code_em">Vous pouvez faire des combinaisons de OR entre ces variables ou ne rien faire du tout.</span>
+10: <span class="code_em">*/</span>
+11:
+12: KOS_INIT_FLAGS(INIT_DEFAULT | INIT_MALLOCSTATS);
+13:
+14:
+15: <span class="code_em">/* point d'entree principal du programme */</span>
+16: int main(int argc, char **argv) 
+17: {
+18:   printf("Hello world!\n");  
+19:   return 0;
+20: }
+</pre>
+
+<p class="normal"> Le Makefile associ&eacute; &agrave; ce projet va nous servir de base pour tous les autres exemples. C'est exactement le makefile disponible dans <span class="menu">kos/examples/dreamcast/hello</span></p>
+
+<pre>
+01:# Put the filename of the output binary here
+02:TARGET = hello.elf
+03:
+04:# List all of your C files here, but change the extension to ".o"
+05:# Include "romdisk.o" if you want a rom disk.
+06:OBJS = hello.o
+07:
+08:# If you define this, the Makefile.rules will create a romdisk.o for you
+09:# from the named dir.
+10:KOS_ROMDISK_DIR = romdisk
+11:
+12:# The rm-elf step is to remove the target before building, to force the
+13:# re-creation of the rom disk.
+14:all: rm-elf $(TARGET)
+15:
+16:include $(KOS_BASE)/Makefile.rules
+17:
+18:clean:
+19:	-rm -f $(TARGET) $(OBJS)
+20:
+21:rm-elf:
+22:	-rm -f $(TARGET)
+23:
+24:$(TARGET): $(OBJS)
+25:	kos-cc -o $(TARGET) $(OBJS)
+26:
+27:run: $(TARGET)
+28:	$(KOS_LOADER) $(TARGET)
+29:
+30:dist:
+31:	rm -f $(OBJS)
+32:	$(KOS_STRIP) $(TARGET)
+33:
+</pre>
+
+
+<h2>5.2 Chargement d'une image</h2>
+
+<p class="normal">Passons tout de suite &agrave; l'exemple suivant qui est d&eacute;j&agrave; beaucoup plus int&eacute;ressant. En effet, cet exemple va charger une image au format png, et va effectuer un fondu en partant d'un&nbsp;&eacute;cran noir jusqu'&agrave; l'apparition de l'image compl&egrave;te.</p>
+
+
+<pre>
+01: #include &#139;kos.h&#155;
+02: #include &#139;png/png.h&#155;
+03: #include &#139;zlib/zlib.h&#155;
+04:
+05: <span class="code_em">/* Structure decrivant une texture dans KOS*/</span>
+05: pvr_ptr_t tex;
+06:
+07: <span class="code_em">/*</span>
+08: <span class="code_em">Fonction de chargement de l'image au format png et transformation en structure KOS</span>
+09: <span class="code_em">Acc&egrave;s &agrave; un syst&egrave;me de fichiers sp&eacute;cifique : Le RomDisk. Ce dernier est linke directement &agrave; l'ex&eacute;cutable.</span>
+10  <span class="code_em">Attention les images doivent &ecirc;tre carr&eacute;es.</span>
+11: <span class="code_em">*/</span>
+12: void img_init()
+13: {
+14:   team_tex = pvr_mem_malloc(512*512*2);
+15:   png_to_texture("/rd/team.png", tex, PNG_FULL_ALPHA);
+16: }
+17:
+18:<span class="code_em">/*</span>
+19: <span class="code_em">Fonction qui se charge de faire l'affichage de l'image sur tout l'ecran. </span>
+20: <span class="code_em">Elle prend en param&egrave;tre un flottant qui repr&eacute;sente  l'indice de transparence de l'image.</span> 
+21:<span class="code_em">*/</span>
+22:void draw_tr_img(float alpha)
+23:{
+24:    pvr_poly_cxt_t cxt;
+25:    pvr_poly_hdr_t hdr;
+26:    pvr_vertex_t vert;
+27:
+28:    <span class="code_em">/*</span>
+29:     <span class="code_em">PVR_LIST_TR_POLY    : texture transparente, utiliser PVR_LIST_OP_POLY si elle est opaque</span>
+30:     <span class="code_em">PVR_TXRFMT_ARGB4444 : couleur de texture tranparente, utiliser PVR_TXRFMT_RGB565 si elle est opaque</span>
+31:     <span class="code_em">tex 		       : notre objet texture</span>
+32:     <span class="code_em">512,512             : taille de l'image</span>
+33:     <span class="code_em">PVR_FILTER_BILINEAR : filtre bilin&eacute;aire, mettre 0 si on n'en veut pas</span>
+34:    <span class="code_em">*/</span>
+35:    pvr_poly_cxt_txr(&cxt, PVR_LIST_TR_POLY, PVR_TXRFMT_ARGB4444, 512, 512, tex, PVR_FILTER_BILINEAR);
+36:    pvr_poly_compile(&hdr, &cxt);
+37:    pvr_prim(&hdr, sizeof(hdr));
+38:
+39:    
+40:    <span class="code_em">/*</span>
+41:      <span class="code_em">L'API pvr de KOS donne une interface pour dessiner des points (vertex) sur l'&eacute;cran.</span>
+42:      <span class="code_em">PVR_PACK_COLOR : definition de la couleur du point. On lui passe une valeur alpha en param&egrave;tre qui est notre valeur de transparence.</span>     
+43:    <span class="code_em">*/</span>
+44:    vert.argb = PVR_PACK_COLOR(alpha, 1.0f, 1.0f, 1.0f);    
+45:    vert.oargb = 0;
+46:
+47:    <span class="code_em">/*</span>
+48:      <span class="code_em">On d&eacute;finit tous les vertex</span>
+49:    <span class="code_em">*/</span>
+50:    vert.flags = PVR_CMD_VERTEX;
+51:    
+52:    <span class="code_em">/*</span>
+53:      <span class="code_em">Notre but est d'afficher, &agrave; chaque image, une image carr&eacute;e de la taille de l'&eacute;cran. On a donc 4 points &agrave d&eacute;finir ayant pour coordonn&eacute;es :</span>
+         <span class="code_em">(0,0,0), (0,480,0), (640,0,0), (640,480,0)</span>
+54:    <span class="code_em">*/</span>
+55:    vert.x = 0;
+56:    vert.y = 0;
+57:    vert.z = 1;
+58:    vert.u = 0.0;
+59:    vert.v = 0.0;
+60:    pvr_prim(&vert, sizeof(vert));
+61:    
+62:    vert.x = 640;
+63:    vert.y = 0;
+64:    vert.z = 1;
+65:    vert.u = 1.0;
+66:    vert.v = 0.0;
+67:    pvr_prim(&vert, sizeof(vert));
+68:    
+69:    vert.x = 0;
+70:    vert.y = 480;
+71:    vert.z = 1;
+72:    vert.u = 0.0;
+73:    vert.v = 1.0;
+74:    pvr_prim(&vert, sizeof(vert));
+75:    
+76:    vert.x = 640;
+77:    vert.y = 480;
+78:    vert.z = 1;
+79:    vert.u = 1.0;
+80:    vert.v = 1.0;
+81:
+82:    <span class="code_em">/*</span>
+83:      <span class="code_em">On termine la d&eacute;finition des vertex</span>
+84:    <span class="code_em">*/</span>
+85:    vert.flags = PVR_CMD_VERTEX_EOL;
+86:    pvr_prim(&vert, sizeof(vert));
+87:}
+88:
+89:void draw_intro(void)
+90:{
+91:  float alpha=0.0;
+92:  int i = 0;
+93:
+94:  for(; i<100; i++)
+95:  {
+96:      <span class="code_em">/* On sp&eacute;cifie &agrave; PVR de se pr&eacute;parer */</span>
+97:      pvr_wait_ready();
+98:
+99:	 <span class="code_em">/* On sp&eacute;cifie &agrave; PVR qu'on commence la sc&egrave;ne */ </span>
+100:     pvr_scene_begin();
+101:      
+102:     <span class="code_em"> /* On doit s&eacute;parer l'affichage des texture transparentes des textures opaques. Si on avait sur notre sc&egrave;ne</span>
+         <span class="code_em">des textures opaques, on rajouterait un bloc : pvr_list_begin(PVR_LIST_OP_POLY) */</span>
+103:	 pvr_list_begin(PVR_LIST_TR_POLY);
+104:      draw_tr_img(alpha);
+105:	 <span class="code_em">/* On a termin&eacute; ce qu'on voulait faire, on le dit donc &grave; pvr. */</span>
+106:     pvr_list_finish();
+107:	 <span class="code_em">/ *De m&ecirc;me qu'on a dit qu'on commen&ccedil;ait une sc&egrave;ne, on pr&eacute;vient quand on l'a termin&eacute;e */</span>
+108:     pvr_scene_finish();
+109:     alpha+=0.01;
+110:     thd_sleep(50);
+111:  }
+112:  thd_sleep(2000);
+113:}
+114:
+115:
+116:<span class="code_em"> /* D&eacute;finition du romdisk */</span>
+117:extern uint8 romdisk[];
+118:KOS_INIT_ROMDISK(romdisk);
+119:
+120:int main(int argc, char **argv)
+121:{   
+122:
+123:  pvr_init_defaults();
+124:    
+125:
+126:  img_init();
+127:  draw_intro();
+128:  return 0;
+129:}
+</pre>
+
+<p class="normal">Dans cet exemple, nous utilisons un <span class="menu">romdisk</span>. C'est une archive qui va &ecirc;tre compil&eacute;e et li&eacute;e au binaire. Pour la cr&eacute;er, il suffit de cr&eacute;er un r&eacute;pertoire <span class="menu">romdisk</span> dans celui des sources du projet, et de modifier le makefile de la sorte :</p>
+
+<p class="normal">OBJS = hello.o romdisk.o</p>
+<pre>
+$(TARGET): $(OBJS)
+	kos-cc -Wall -o $(TARGET) $(OBJS) -lpng -lm -lz
+</pre>
+
+<p class="normal">Il ne nous reste&nbsp;plus qu'&agrave; l'ex&eacute;cuter de la fa&ccedil;on de notre choix.</p>
+
+
+<h2>5.3 Gestion des manettes</h2>
+
+<p class="normal">Voil&agrave; le dernier exemple abord&eacute; dans cet article. Nous allons nous&nbsp;attarder sur la gestion des manettes, gr&acirc;ce &agrave; un exemple qui illustre la gestion de la croix directionnelle.</p>
+
+<pre>
+01:#include &#139;kos.h&#155;
+02:
+03:
+04:int check_pad() 
+05:{
+06:  uint8 c;
+07:  <span class="code_em"> /* Structure permettant de repr&eacute;senter un controlleur */</span>
+08:  static cont_cond_t cond;
+09:  <span class="code_em"> /* R&eacute;cup&eacute;ration de la premi&egrave;re manette */</span>
+09:  c = maple_first_controller();
+10: 
+11:  <span class="code_em"> /* Remplissage de la structure cond, en fonction de c.  </span>
+12     <span class="code_em">    C'est cette structure qui va contenir les informations importantes.*/</span>
+13:  if (cont_get_cond(c, &cond) < 0)
+14:    return 0;
+15:  
+16:  <span class="code_em">/* On a appuy&eacute; &agrave; gauche de la croix ? */</span>
+16:  if (!(cond.buttons & CONT_DPAD_LEFT)) 
+17:  {
+18:    printf("Pressed left\n");
+19:    return 1;
+20:  }
+21:
+22:  <span class="code_em">/* On a appuy&eacute; &agrave; droite de la croix ? */</span>
+23:  if (!(cond.buttons & CONT_DPAD_RIGHT)) 
+24:  {
+25:    printf("Pressed right\n");
+26:    return 1;
+27:  }
+28:  
+29:
+30:  <span class="code_em">/* On a appuy&eacute; en haut de la croix ? */</span>
+30:  if (!(cond.buttons & CONT_DPAD_UP)) 
+31:  {
+32:    printf("Pressed up\n");
+33:    return 1;
+34:  }
+35:
+36:  <span class="code_em">/* On a appuy&eacute; en bas de la croix ? */</span>
+37:  if (!(cond.buttons & CONT_DPAD_DOWN)) 
+38:  {
+39:    printf("Pressed down\n");
+40:    return 1;
+41:  }
+42:
+43:  return 0;
+44:}
+45:
+46:
+47:int main(int argc, char **argv)
+48:{   
+49:  int done = 0;
+50:
+51:  while(!done) 
+52:  {
+53:    <span class="code_em">/* </span>
+54:    <span class="code_em">  Macro qui permet d'it&eacute;rer sur tous les controlleurs branch&eacute;s sur la console.</span>
+55:    <span class="code_em">  Si un controlleur a appuy&eacute; sur <span class="menu">start</span>, le programme s'arr&ecirc;te</span>
+56:    <span class="code_em">*/ </span>
+57:    MAPLE_FOREACH_BEGIN(MAPLE_FUNC_CONTROLLER, cont_state_t, st)
+58:      if (st->buttons & CONT_START)
+59:        done = 1;
+60:    MAPLE_FOREACH_END()
+61:    
+62:    check_pad();
+63:    <span class="code_em">/* On stope le thread principal pour 60 milli secondes</span>
+64:    thd_sleep(60);
+65:  }
+66:  return 0;
+67:}
+</pre>
+
+<p class="normal">Pour&nbsp;le makefile, nous allons r&eacute;utiliser&nbsp;celui fourni dans le premier exemple, il suffit amplement.</p>
+<p class="normal">La pr&eacute;sententation de l'interface de d&eacute;veloppement est termin&eacute;e. Cette derni&egrave;re est vraiment tr&egrave;s riche, je pourrais en parler durant de nombreuses pages, et j'esp&egrave;re avoir choisi des exemples suffisamment caract&eacute;ristiques pour vous donner envie de vous plonger dedans. Je vais terminer l'article par un paragraphe sur la gravure de nos binaires. Pour information, n'ayant pas trouv&eacute; les bons tutoriaux sur Internet, j'ai mis tr&egrave;s longtemps avant de r&eacute;ussir cette &eacute;tape. Je vais bien d&eacute;tailler la manipulation.</p>
+
+
+<h1>6. Rendre un binaire bootable</h1>
+
+
+<h2>6.1 Pr&eacute;paration</h2>
+
+<p class="normal">Nous allons utiliser un fichier binaire&nbsp; <span class="menu">.elf</span>, que nous allons nommer <span class="menu">hello.elf</span>. Nous allons le manipuler pour le rendre acceptable par la console, via un cd-rom.</p>
+
+<p class="normal"> * sh-elf-strip hello.elf</p>
+<p class="normal"> * sh-elf-objcopy -O binary -R .stack hello.elf hello.bin</p>
+
+<p class="normal">Notre binaire est alors quasiment pr&ecirc;t &agrave; &ecirc;tre accueilli par la console, il ne reste plus qu'une seule &eacute;tape : le <span class="menu">scrambling</span>. <span class="menu">Scrambler</span> un binaire Dreamcast peut s'interpr&eacute;ter par "chiffrer" un binaire. Pour que ce binaire soit lu sur la console &agrave; partir d'un cd-rom, il faut imp&eacute;rativement le <span class="menu">scrambler</span>. Pour ce faire, il faut t&eacute;l&eacute;charger le programme qui se charge de cette op&eacute;ration [12] et le compiler.</p>
+
+<p class="normal"> * gcc -o scramble scramble.c</p>
+<p class="normal"> * ./scramble hello.bin 1ST_READ.BIN</p>
+
+<p class="normal">Une fois ces manipulations effectu&eacute;es, nous pouvons&nbsp;passer &agrave; l'&eacute;tape de pr&eacute;paration du cd-rom.</p>
+
+
+<h2>6.2 Explications G&eacute;n&eacute;rales</h2>
+
+<p class="normal">Je vais expliquer bri&egrave;vement le m&eacute;canisme pour rendre un binaire fra&icirc;chement compil&eacute; bootable sur un cd-rom. Tout d'abord, la Dreamcast permet de lire des CD-R (pour les RW, c'est une autre paire de manches [13]). Pour qu'un cd-rom soit bootable sur Dreamcast, ce dernier doit &ecirc;tre compos&eacute; de deux sessions. La premi&egrave;re est une session audio normale (une piste de silence convient tr&egrave;s bien) et la seconde doit &ecirc;tre de type CD/XA (mode 2 form 1). Cette piste doit contenir une archive de type ISO9660 classique, dont les 16 premiers secteurs sont d&eacute;di&eacute;s au <span class="menu">Bootstrap</span> (IP.BIN). Vous pouvez soit cr&eacute;er votre propre IP.BIN [14], soit en utiliser un existant, par exemple celui fourni dans l'archive de dc-loader t&eacute;l&eacute;charg&eacute;e pr&eacute;c&eacute;demment.</p>
+
+
+<h2>6.3 Cr&eacute;ation et gravure de la premi&egrave;re piste</h2>
+
+<p class="normal"> * dd if=/dev/zero bs=2352 count=300 of=audio.raw</p>
+<p class="normal"> * cdrecord dev=ATAPI:<span class="menu">x,y,z</span> speed=8 -multi -audio audio.raw</p>
+
+<p class="normal">Faire un <span class="menu">cdrecord dev=ATAPI -scanbus</span> pour d&eacute;terminer les valeurs de x, y, et z.<br /> Un conseil :&nbsp;&nbsp;graver &agrave; une vitesse de 8x, une gravure plus rapide risquant de rendre le CD illisible sur la console. J'ai d&eacute;j&agrave; perdu quelques CD dans cette manipulation ;). A noter que&nbsp;le CD a &eacute;t&eacute; grav&eacute;&nbsp;en multisession afin qu'il puisse accueillir la piste du programme &agrave; lancer.</p>
+
+
+<h2>6.4 Cr&eacute;ation et gravure de la seconde piste</h2>
+
+<p class="normal">Comme&nbsp;la premi&egrave;re piste a &eacute;t&eacute; grav&eacute;e en multissession, nous avons besoin de savoir quand commence cette piste et quand elle se termine. Pour ce faire :</p>
+
+<p class="normal"> * cdrecord dev=ATAPI:x,y,z -msinfo</p>
+
+<p class="normal">Cette commande retourne deux nombres sous la forme : s,e. Pour ma part, les valeurs sont : 0,11702. Nous allons&nbsp;proc&eacute;der &agrave; la cr&eacute;ation de l'image du binaire :</p>
+
+<p class="normal"> * mkisofs -l -r -C <span class="menu">s,e</span> -G IP.BIN -o tmp.iso 1ST_READ.BIN</p>
+
+<p class="normal">puis la graver :</p>
+
+<p class="normal"> * cdrecord dev=ATAPI:x,y,z speed=8 -multi -xa tmp.iso</p>
+
+<p class="normal">Attention : vous devez&nbsp;v&eacute;rifier dans le manuel de cdrecord ce que repr&eacute;sente&nbsp;l'option <span class="menu">-xa</span>. En effet, la Dreamcast attend une taille de secteur de 2048 bytes. Historiquement, ainsi qu'on peut le lire dans la majorit&eacute; des documents sur le sujet, cdrecord &eacute;tait appel&eacute; avec l'argument <span class="menu">-xa1</span>. Voici un extrait de mon manuel de cdrecord :</p>
+
+<p class="normal">-xa If this flag is present, all subsequent tracks are written in CD-ROM XA mode 2 form 1 format. The data size is a multiple of 2048 bytes. The XA sector sub headers will be created by the drive. With this option, the write mode is the same as with the -multi option.</p>
+<p class="normal">-xa1 If this flag is present, all subsequent tracks are written in CD-ROM XA mode 2 form 1 format. The data size is a multiple of 2056 bytes. The XA sector sub headers are part of the user data and have to be supplied by the application that prepares the data to be written.</p>
+
+<p class="normal">Sur ma distribution, d'apr&egrave;s ce manuel, je dois utiliser l'option <span class="menu">-xa</span> et non <span class="menu">-xa1</span> pour graver le CD avec une taille de secteur de 2048 bytes. Il se peut que sur votre distribution, ce soit diff&eacute;rent, alors fa&icirc;tes bien attention.</p>
+
+<p class="normal">Voil&agrave;, nous avons grav&eacute; notre programme sur un CD. Il suffit maintenant de l'ins&eacute;rer dans la console et proc&eacute;der au test ;).<br /> Un dernier mot en ce qui concerne la gravure de binaires : il existe des logiciels [15] qui permettent de graver plusieurs&nbsp;binaires en multisession sur le m&ecirc;me cd, ce qui a pour effet un&nbsp;gain non n&eacute;gligeable de CD. Ces logiciels ne sont &agrave; disposition que sur plateforme Windows, je n'ai jamais eu l'occasion de tester.</p>
+
+
+<h1>Conclusion</h1>
+
+<p class="normal">Ainsi&nbsp;se termine l'article de pr&eacute;sentation de l'interface de d&eacute;veloppement sur Dreamcast. J'esp&egrave;re que vous prendrez plaisir &agrave; porter vos jeux sur cette console que j'appr&eacute;cie &eacute;norm&eacute;ment.</p>
+<p class="normal"> Je tiens &agrave; remercier d'une part les&nbsp;d&eacute;veloppeurs de KOS, qui&nbsp;ont fait un travail magnifique, et d'autre part&nbsp;toute la communaut&eacute; francophone du <span class="menu">Homebrew</span> Dreamcast.</p>
+
+
+<h1>Liens</h1>
+
+<p class="normal">[1] Feet of fury : <span class="url">http://www.feetoffury.com/</span></p>
+<p class="normal">&nbsp;&nbsp;&nbsp;C'est un jeu commercial d&eacute;velopp&eacute; par l'&eacute;quipe de Dan Potter, bas&eacute; sur KOS.</p>
+
+<p class="normal">[2] Alice Dreams : <span class="url">http://www.alicedreams.com</span></p>
+<p class="normal">&nbsp;&nbsp;&nbsp;C'est un jeu encore en d&eacute;veloppement, par 2 fran&ccedil;ais : Poche et Patbier.</p>
+
+<p class="normal">[3] Article sur la vie de la console&nbsp;: <span class="url">http://www.jeuxvideo.com/articles/0000/00003899_dossier.htm</span></p>
+
+<p class="normal">[4] KOS : <span class="url">http://gamedev.allusion.net</span></p>
+<p class="normal">&nbsp;&nbsp;&nbsp;Site officiel de KallistiOS, avec notamment l'historique, la motivation, les sources, les tutoriels pour configurer la biblioth&egrave;que ...</p>
+
+<p class="normal">[5] Snapshots de KOS : <span class="url">http://gamedev.allusion.net/softprj/kos/howtogetit.php</span></p>
+
+<p class="normal">[6] Chankast : <span class="url">http://www.chanka.org/</span></p>
+
+<p class="normal">[7] Wine : <span class="url">http://www.winehq.org/</span></p>
+
+<p class="normal">[8] Liste de sites pour les outils de base du compilateur crois&eacute;&nbsp;: </p>
+<p class="normal">&nbsp;&nbsp;&nbsp;<span class="url">ftp://ftp.lip6.fr/pub/gcc/releases/gcc-3.4.3</span></p>
+<p class="normal">&nbsp;&nbsp;&nbsp;<span class="url">ftp://ftp.lip6.fr/pub/gcc/releases/gcc-3.0.4</span></p>
+<p class="normal">&nbsp;&nbsp;&nbsp;<span class="url">ftp://sources.redhat.com/pub/newlib/index.html</span></p>
+<p class="normal">&nbsp;&nbsp;&nbsp;<span class="url">http://ftp.gnu.org/gnu/binutils/</span></p>
+
+<p class="normal">[9] Scripts d'automatisation de la construction du compilateur crois&eacute;&nbsp;: <span class="url">http://muller.john.free.fr/dreamcast</span></p>
+
+<p class="normal">[10] Page d'explication sur la fabrication du <span class="menu">coder cable</span> : <span class="url">http://www.waz.org.uk/gamedev/dc/serialcable.php</span></p>
+
+<p class="normal">[11] Boob : <span class="url">http://boob.co.uk/&nbsp;</span></p>
+<p class="normal">&nbsp; &nbsp;Site de r&eacute;f&eacute;rence Dreamcast. On y trouve &eacute;norm&eacute;ment de liens, binaires, documentation</p>
+
+<p class="normal">[12] sramble.c : <span class="url">http://boob.co.uk/files/scramble.c</span></p>
+
+<p class="normal">[13] CD-RW sur Dreamcast : <span class="url">http://semicolo.free.fr/Dreamcast/cdrw/indexfr.html</span></p>
+
+<p class="normal">[14] Construire son propre IP.BIN : <span class="url">http://mc.pp.se/dc/ip.bin.html</span></p>
+
+<p class="normal">[15] Demomenu : <span class="url">http://dcreload.free.fr/tuto_demomenu.php</span></p>
+
+<p class="normal">Forum francophone principal sur le d&eacute;veloppement Dreamcast&nbsp;: <span class="url">http://dcreload.free.fr/(lien forum)</span></p>
+
+<p class="normal">Portail francophone sur la Dreamcast : <span class="url">http://www.dc-france.com/index.php</span></p>
+
+<p class="normal">Forum anglophone tr&egrave;s actif : <span class="url">http://www.dcemulation.com/phpBB/index.php</span></p>
+
+</body>
+</html>
+
