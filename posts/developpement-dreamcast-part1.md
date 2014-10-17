@@ -39,28 +39,15 @@ pour la playstation).</p>
  Composant                       | Description|
  -----------------               | ---------------------------- | ------------------
  `'Micro-Processeur'`            | RISC Hitachi SH4 128 bits 200 Mhz, 360 MIPS, 1,4 GFLOPS |
- `"Isn't this fun?"`             | NEC PowerVR (plus de 3 millions de polygones par secondes) |
- `Processeur graphique`          | -- is en-dash, --- is em-dash |
- `Processeur sonore`             | -- is en-dash, --- is em-dash |
- `M&eacute;moire`                | -- is en-dash, --- is em-dash |
- `Syst&egrave;me d'exploitation` | -- is en-dash, --- is em-dash |
- `Lecteur CD` | -- is en-dash, --- is em-dash |
- `Couleurs` | -- is en-dash, --- is em-dash |
- `Carte m&eacute;moire` | -- is en-dash, --- is em-dash |
- `Taille` | -- is en-dash, --- is em-dash |
+ `Processeur graphique`          | NEC PowerVR (plus de 3 millions de polygones par secondes)|
+ `Processeur sonore`             | Yamaha RISC 32 bits (64 canaux ADPCM) |
+ `M&eacute;moire`                | 16 Mo (64Mbit SDRAMx2) |
+ `Syst&egrave;me d'exploitation` | Version optimis&eacute;e de Windows CE |
+ `Lecteur CD` | 12x |
+ `Couleurs` | 16,7 millions |
+ `Carte m&eacute;moire` | V.M.S. |
+ `Taille` | 190 x 195 x 78 mm |
 
-
-
-<tr><td><p class="normal">Processeur sonore</p></td><td><p class="normal">Yamaha RISC 32 bits (64 canaux ADPCM)</p></td></tr>
-<tr><td><p class="normal">M&eacute;moire</p></td><td><p class="normal">16 Mo (64Mbit SDRAMx2)</p></td></tr>
-<tr><td><p class="normal">Syst&egrave;me d'exploitation</p></td><td><p class="normal">Version optimis&eacute;e de Windows CE</p></td></tr>
-<tr><td><p class="normal">Lecteur CD</p></td><td><p class="normal">12x</p></td></tr>
-<tr><td><p class="normal">Couleurs</p></td><td><p class="normal">16,7 millions</p></td></tr>
-<tr><td><p class="normal">Carte m&eacute;moire</p></td><td><p class="normal">V.M.S.</p></td></tr>
-<tr><td><p class="normal">Taille</p></td><td><p class="normal">190 x 195 x 78 mm</p></td></tr>
-<tr><td><p class="normal">Poids</p></td><td><p class="normal">2 kg</p></td></tr>
-</tbody>
-</table>
 
 <p class="normal">A ce sujet, il existe un tr&egrave;s bon article paru en 2004, disponible sur le site de jeux videos : jeuxvideos.com [3].</p>
 
