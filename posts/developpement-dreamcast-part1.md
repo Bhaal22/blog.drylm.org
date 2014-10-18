@@ -43,10 +43,10 @@ pour la playstation).</p>
  `Processeur sonore`             | Yamaha RISC 32 bits (64 canaux ADPCM) |
  `M&eacute;moire`                | 16 Mo (64Mbit SDRAMx2) |
  `Syst&egrave;me d'exploitation` | Version optimis&eacute;e de Windows CE |
- `Lecteur CD` | 12x |
- `Couleurs` | 16,7 millions |
- `Carte m&eacute;moire` | V.M.S. |
- `Taille` | 190 x 195 x 78 mm |
+ `Lecteur CD`                    | 12x |
+ `Couleurs`                      | 16,7 millions |
+ `Carte m&eacute;moire`          | V.M.S. |
+ `Taille`                        | 190 x 195 x 78 mm |
 
 
 <p class="normal">A ce sujet, il existe un tr&egrave;s bon article paru en 2004, disponible sur le site de jeux videos : jeuxvideos.com [3].</p>
