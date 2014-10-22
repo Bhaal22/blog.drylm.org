@@ -9,6 +9,7 @@
 -->
 
 
+
 Mise en place et &eacute;tude du d&eacute;veloppement Dreamcast
 ==
 
@@ -38,17 +39,17 @@ passons en revue quelques informations techniques de la console.</p>
 <p class="normal">Sortie en novembre 1998 au Japon, la Dreamcast est disponible en Europe et aux Etats-unis &agrave; partir de No&euml;l 1999. Sega(tm) frappe fort avec sa nouvelle console 128 bits (contre 32
 pour la playstation).</p>
 
- Composant                       | Description|
- -----------------               | ---------------------------- | ------------------
- `'Micro-Processeur'`            | RISC Hitachi SH4 128 bits 200 Mhz, 360 MIPS, 1,4 GFLOPS |
- `Processeur graphique`          | NEC PowerVR (plus de 3 millions de polygones par secondes)|
- `Processeur sonore`             | Yamaha RISC 32 bits (64 canaux ADPCM) |
- `M&eacute;moire`                | 16 Mo (64Mbit SDRAMx2) |
- `Syst&egrave;me d'exploitation` | Version optimis&eacute;e de Windows CE |
- `Lecteur CD`                    | 12x |
- `Couleurs`                      | 16,7 millions |
- `Carte m&eacute;moire`          | V.M.S. |
- `Taille`                        | 190 x 195 x 78 mm |
+| Composant                       | Description|
+|:-----------------               |:----------------------------
+| `'Micro-Processeur'`            | RISC Hitachi SH4 128 bits 200 Mhz, 360 MIPS, 1,4 GFLOPS |
+| `Processeur graphique`          | NEC PowerVR (plus de 3 millions de polygones par secondes)|
+| `Processeur sonore`             | Yamaha RISC 32 bits (64 canaux ADPCM) |
+| `M&eacute;moire`                | 16 Mo (64Mbit SDRAMx2) |
+| `Syst&egrave;me d'exploitation` | Version optimis&eacute;e de Windows CE |
+| `Lecteur CD`                    | 12x |
+| `Couleurs`                      | 16,7 millions |
+| `Carte m&eacute;moire`          | V.M.S. |
+| `Taille`                        | 190 x 195 x 78 mm |
 
 
 <p class="normal">A ce sujet, il existe un tr&egrave;s bon article paru en 2004, disponible sur le site de jeux videos : jeuxvideos.com.</p>

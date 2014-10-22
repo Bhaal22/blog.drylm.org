@@ -576,6 +576,7 @@ COMMENT_SYSTEM_ID = "jonathanmuller"
 # Note: most Nikola-specific extensions are done via the Nikola plugin system,
 #       with the MarkdownExtension class and should not be added here.
 # MARKDOWN_EXTENSIONS = ['fenced_code', 'codehilite']
+MARKDOWN_EXTENSIONS = ['fenced_code', 'codehilite', 'tables'] 
 
 # Social buttons. This is sample code for AddThis (which was the default for a
 # long time). Insert anything you want here, or even make it empty.
