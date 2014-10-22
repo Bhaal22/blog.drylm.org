@@ -2,7 +2,7 @@
 .. title: Developpement Dreamcast part1.
 .. slug: developpement-dreamcast-part1
 .. date: 2014-10-17 19:57:36 UTC
-.. tags: dreamcast, c, c++, linux, gcc, toolchain
+.. tags: dreamcast, gcc, toolchain, linux, C++
 .. link: 
 .. description: 
 .. type: text
@@ -22,15 +22,17 @@ C'est lors d'une install party &agrave; Metz que j'ai rencontr&eacute; une perso
 Derni&egrave;re console en titre de Sega(tm), cette merveilleuse console &agrave; la mort pr&eacute;matur&eacute;e fait encore parler d'elle au sein d'une communaut&eacute; tr&egrave;s active sur Internet.
 En effet, de nombreuses personnes ont d&eacute;cid&eacute; de programmer des jeux, des utilitaires, des &eacute;mulateurs sur cette console. Je pourrais citer le tr&egrave;s c&eacute;l&egrave;bre ScummVM
 disponible &eacute;galement sur PC et qui permet de lancer la plupart des jeux de Lucas Art(tm) (Monkey Island, Day of the tantacle, Sam &amp; Max ...), ou encore des &eacute;mulateurs (cpc, megadrive,
-n&eacute;o-g&eacute;o en cours de d&eacute;veloppement).<br /> Parmi les jeux <span class="menu">Homebrew</span>, pour ma part, deux se d&eacute;tachent du lot : Feet of fury [1] et Alice Dreams [2] .
+n&eacute;o-g&eacute;o en cours de d&eacute;veloppement).<br /> Parmi les jeux <span class="menu">Homebrew</span>, pour ma part, deux se d&eacute;tachent du lot : Feet of fury et Alice Dreams.
 On peut dire que la communaut&eacute; est vraiment productive et motiv&eacute;e.
 J'en arrive au but de cet article : mettre en place un environnement de compilation/d&eacute;veloppement pour Dreamcast au sein d'un syst&egrave;me GNU/Linux. Des packs windows existent pour l'environnement
 de d&eacute;veloppement dev-cpp, mais je n'aborderai pas ce type d'installation.<br />Avant toute explication concernant l'installation de l'environnement,
 passons en revue quelques informations techniques de la console.</p>
 
+<!-- TEASER_END -->
+
 ##2. Historique et Hardware##
 
-<p class="normal"><img src="Dreamcast.png">///insertion image : Dreamcast.png///</p>
+<img src="/galleries/dreamcast/dreamcast.png" />
 <p class="legende">Figure 1&nbsp;: La Dreamcast, sa manette et la carte m&eacute;moire</p>
 
 <p class="normal">Sortie en novembre 1998 au Japon, la Dreamcast est disponible en Europe et aux Etats-unis &agrave; partir de No&euml;l 1999. Sega(tm) frappe fort avec sa nouvelle console 128 bits (contre 32
@@ -49,7 +51,7 @@ pour la playstation).</p>
  `Taille`                        | 190 x 195 x 78 mm |
 
 
-<p class="normal">A ce sujet, il existe un tr&egrave;s bon article paru en 2004, disponible sur le site de jeux videos : jeuxvideos.com [3].</p>
+<p class="normal">A ce sujet, il existe un tr&egrave;s bon article paru en 2004, disponible sur le site de jeux videos : jeuxvideos.com.</p>
 
 ##3. Introduction##
 
@@ -60,11 +62,11 @@ Le d&eacute;veloppement amateur pour les diff&eacute;rentes consoles s'appelle :
 
 Les diff&eacute;rentes manipulations seront d&eacute;taill&eacute;es ci-apr&egrave;s. Fort heureusement, il existe de nombreux logiciels disponibles sur Dreamcast. Le m&eacute;canisme de cr&eacute;ation d'un logiciel est le suivant :
 
-- compiler son projet avec la biblioth&egrave;que KOS (Kallisti OS) [4] &eacute;crite par Dan Potter. Des snapshots Subversion sont disponibles ici [5] (cf la proc&eacute;dure d'installation est d&eacute;taill&eacute;e dans le chapitre suivant) ;
+- compiler son projet avec la biblioth&egrave;que KOS (Kallisti OS) &eacute;crite par Dan Potter. Des snapshots Subversion sont disponibles ici (cf la proc&eacute;dure d'installation est d&eacute;taill&eacute;e dans le chapitre suivant) ;
 - 3 choix s'offrent &agrave; nous pour tester notre programme :
  - envoyer le programme via le port s&eacute;rie de la Dreamcast. Pour ce faire, il faudra se fabriquer ou s'acheter un <span class="menu">coder cable</span> ;
  - rendre le binaire "bootable" au format Dreamcast, le graver et mettre le CD dans le lecteur de la console ;
- - rendre le binaire "bootable" et le tester sur un &eacute;mulateur. Malheureusement, il existe peu d'&eacute;mulateurs. Un seul est disponible : Chankast [6] qui apparemment fonctionnerait plut&ocirc;t bien, l'inconv&eacute;nient majeur &eacute;tant qu'il n'est disponible que sous Windows. J'ai bien essay&eacute; de le lancer via Wine [7], mais sans r&eacute;el succ&egrave;s.</p>
+ - rendre le binaire "bootable" et le tester sur un &eacute;mulateur. Malheureusement, il existe peu d'&eacute;mulateurs. Un seul est disponible : Chankast qui apparemment fonctionnerait plut&ocirc;t bien, l'inconv&eacute;nient majeur &eacute;tant qu'il n'est disponible que sous Windows. J'ai bien essay&eacute; de le lancer via Wine, mais sans r&eacute;el succ&egrave;s.</p>
 
 <p class="normal">Avant de passer &agrave; la partie technique de l'article, quelques informations p&eacute;cuni&egrave;res pour ceux qui souhaitent se lancer dans le d&eacute;veloppement Dreamcast : </p>
 
@@ -102,7 +104,7 @@ Il faut tout d'abord mettre en place un syst&egrave;me de compilation crois&eacu
 - le second afin de g&eacute;n&eacute;rer du code pour le processeur ARM charg&eacute; de s'occuper du son.
 
 <strong>Attention</strong> :&nbsp;un probl&egrave;me connu des&nbsp;versions de gcc sup&eacute;rieures &agrave; 3.0.4 nous obligent &agrave; utiliser une version 3.0.4 ou inf&eacute;rieure pour le cross-compilateur &agrave; destination du processeur&nbsp;ARM. En ce qui concerne le compilateur crois&eacute; &agrave; destination du processeur SH-4, j'ai utilis&eacute; une version 3.4.3 avec des patchs&nbsp; concernant la gestion des threads (ces derniers seront fournis dans une archive .tar.gz). Une mise en place incorrecte de ces&nbsp;deux compilateurs crois&eacute;s vous assurera de magnifiques <strong>kernel panic</strong>, pour peu que&nbsp;vos programmes utilisent les biblioth&egrave;ques sonores.
-Liste des archives &agrave; r&eacute;cup&eacute;rer&nbsp; [8]: 
+Liste des archives &agrave; r&eacute;cup&eacute;rer&nbsp;: 
 
 - gcc-core-3.4.3.tar.bz2
 - gcc-g++-3.4.3.tar.bz2
@@ -112,7 +114,7 @@ Liste des archives &agrave; r&eacute;cup&eacute;rer&nbsp; [8]:
 - binutils-2.11.2.tar.gz (pour ARM)
 - kos-ports-snapshot-20050618.tar.bz2 kos-snapshot-20050618.tar.bz2
 
-Je vous mets &agrave; disposition un script servant &agrave; construire les compilateurs crois&eacute;s [9] &agrave; partir de ces archives : dc-chain-0.1.tgz (les patchs y sont inclus)
+Je vous mets &agrave; disposition un script servant &agrave; construire les compilateurs crois&eacute;s &agrave; partir de ces archives : dc-chain-0.1.tgz (les patchs y sont inclus)
 
 Copier alors ce script dans le r&eacute;pertoire de votre convenance, par&nbsp; exemple&nbsp;<span class="menu">/tmp/testKOS.</span>
 
@@ -186,9 +188,9 @@ make
 
 #4.4 Transfert de fichiers vers la Dreamcast#
 
-Le moyen le plus facile pour transf&eacute;rer des donn&eacute;es entre le PC et la Dreamcast&nbsp;est de se procurer ou fabriquer ce que l'on appelle un <span class="menu">coder cable</span>. Des informations sur sa fabrication sont disponibles sur&nbsp;cette page [10].
+Le moyen le plus facile pour transf&eacute;rer des donn&eacute;es entre le PC et la Dreamcast&nbsp;est de se procurer ou fabriquer ce que l'on appelle un <span class="menu">coder cable</span>. Des informations sur sa fabrication sont disponibles sur&nbsp;cette page.
 
-N'ayant aucune connaissance en &eacute;lectronique, je me le suis achet&eacute;. C'est un simple c&acirc;ble s&eacute;rie, nous aurons donc besoin d'outils logiciels de transfert entre le pc et la console, &agrave; savoir : dcload/dc-tool. Le site [11] sur lequel se trouvent ces programmes est un site majeur de l'activit&eacute; autour de notre console bien aim&eacute;e. On y trouve toutes formes de sources, binaires, documentation ayant un proche rapport avec la console. 
+N'ayant aucune connaissance en &eacute;lectronique, je me le suis achet&eacute;. C'est un simple c&acirc;ble s&eacute;rie, nous aurons donc besoin d'outils logiciels de transfert entre le pc et la console, &agrave; savoir : dcload/dc-tool. Le site sur lequel se trouvent ces programmes est un site majeur de l'activit&eacute; autour de notre console bien aim&eacute;e. On y trouve toutes formes de sources, binaires, documentation ayant un proche rapport avec la console. 
 La premi&egrave;re phase est de graver un cd-rom et de d&eacute;marrer dessus avec sa Dreamcast. Ce CD-ROM met la console en &eacute;coute sur le port s&eacute;rie. Cette derni&egrave;re s'occupe une fois le transfert termin&eacute;, d'ex&eacute;cuter le programme. La Dreamcast joue alors le r&ocirc;le de serveur et le pc le r&ocirc;le de client. T&eacute;l&eacute;chargeons alors les programmes respectifs :
 
 <h3>4.4.1 C&ocirc;t&eacute; serveur :</h3>
@@ -206,7 +208,7 @@ La premi&egrave;re phase est de graver un cd-rom et de d&eacute;marrer dessus av
 
 - make (les fichiers .bin sont dans la premi&egrave;re archive pr&eacute;c&eacute;demment t&eacute;l&eacute;charg&eacute;e).</p>
 
-Pour ceux qui n'ont pas envie de faire cette manipulation, je mets &agrave; disposition [9] l'image ISO de ce cd-rom de boot.
+Pour ceux qui n'ont pas envie de faire cette manipulation, je mets &agrave; disposition l'image ISO de ce cd-rom de boot.
 
 <h3>4.4.2 C&ocirc;t&eacute; client :</h3>
 

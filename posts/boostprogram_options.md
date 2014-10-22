@@ -17,6 +17,7 @@ boost::program_options
 
 Command line parameters are described at the start of your program and are used like any other command line parameters at Unix-style
 
+<!-- TEASER_END -->
 ### Example
 ```
 #include <boost/program_options.hpp>
