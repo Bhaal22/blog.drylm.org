@@ -51,4 +51,28 @@ pour la playstation).</p>
 
 <p class="normal">A ce sujet, il existe un tr&egrave;s bon article paru en 2004, disponible sur le site de jeux videos : jeuxvideos.com [3].</p>
 
+##3. Introduction##
+
+<p class="normal">Le d&eacute;veloppement amateur pour les diff&eacute;rentes consoles s'appelle : le <span class="menu">Homebrew</span>.
+Il est bien &eacute;videmment possible de programmer sur Dreamcast &agrave; condition de disposer des bons outils : </p>
+
+<p class="normal">* un kit de d&eacute;veloppement ; </p>
+<p class="normal">* un moyen de transf&eacute;rer les&nbsp;donn&eacute;es du PC vers la console afin de tester les programmes que nous aurons &eacute;crits.</p>
+
+<p class="normal"> Les diff&eacute;rentes manipulations seront d&eacute;taill&eacute;es ci-apr&egrave;s. Fort heureusement, il existe de nombreux logiciels disponibles sur Dreamcast. Le m&eacute;canisme de cr&eacute;ation d'un logiciel est le suivant : </p>
+
+<p class="normal"> * compiler son projet avec la biblioth&egrave;que KOS (Kallisti OS) [4] &eacute;crite par Dan Potter. Des snapshots Subversion sont disponibles ici [5] (cf la proc&eacute;dure d'installation est d&eacute;taill&eacute;e dans le chapitre suivant) ;</p>
+<p class="normal"> * 3 choix s'offrent &agrave; nous pour tester notre programme :</p>
+<p class="normal">&nbsp;&nbsp;&nbsp; * envoyer le programme via le port s&eacute;rie de la Dreamcast. Pour ce faire, il faudra se fabriquer ou s'acheter un <span class="menu">coder cable</span> ;</p>
+<p class="normal">&nbsp;&nbsp;&nbsp; * rendre le binaire "bootable" au format Dreamcast, le graver et mettre le CD dans le lecteur de la console ;</p>
+<p class="normal">&nbsp;&nbsp;&nbsp; * rendre le binaire "bootable" et le tester sur un &eacute;mulateur. Malheureusement, il existe peu d'&eacute;mulateurs. Un seul est disponible : Chankast [6] qui apparemment fonctionnerait plut&ocirc;t bien, l'inconv&eacute;nient majeur &eacute;tant qu'il n'est disponible que sous Windows. J'ai bien essay&eacute; de le lancer via Wine [7], mais sans r&eacute;el succ&egrave;s.</p>
+
+<p class="normal">Avant de passer &agrave; la partie technique de l'article, quelques informations p&eacute;cuni&egrave;res pour ceux qui souhaitent se lancer dans le d&eacute;veloppement Dreamcast : </p>
+
+<p class="normal"> - une console d'occasion (manette incluse) se trouve pour une cinquantaine d'euros chez n'importe quel revendeur ;</p>
+<p class="normal"> - le <span class="menu">coder cable</span> se trouve sur diff&eacute;rents sites sp&eacute;cialis&eacute;s pour vingt, vingt-cinq euros environ. </p>
+
+
+<p class="normal">Au final, on peut se construire une plateforme de d&eacute;veloppement on ne peut plus int&eacute;ressante pour soixante dix euros environ. Passons maintenant aux choses s&eacute;rieuses : l'installation de l'environnement compilation/d&eacute;veloppement sur notre GNU/Linux pr&eacute;f&eacute;r&eacute;.</p>
+
 
