@@ -125,8 +125,6 @@ ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
 ```
 
 
-
-
 Ah !! Our **ServicePointManager** comes back. As you can see, the **ServicePointManager** is a static class with static properties such as 
 
  - SecurityProtocolType
@@ -134,120 +132,13 @@ Ah !! Our **ServicePointManager** comes back. As you can see, the **ServicePoint
  - and many others you can find on this [page](http://msdn.microsoft.com/fr-fr/library/system.net.servicepointmanager%28v=vs.110%29.aspx).
 
 **ServicePointManager** is in charge of managing ServicePoint instances representing connections on endpoints and drive the behavior of SSLStreams with the certificate policy validation, the type of security protocol, what to do with HTTP 100 status code ...
-Good, it works well. Suppose now you want to test that SSL3 never works on your server and only works for SSL 1.0.
+Good, it works well. Suppose now you want to your server accepts SSL 3 AND TLS 1.0
 
-We can modify our existing code like that :
+```
+# from apache2 ssl.conf
+# enables only SSL 3.0
 
-```c#
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Net;
-using System.Diagnostics;
-
-namespace ConsoleApplication1
-{
-  class Program
-  {
-    public void scan(string url, SecurityProtocolType type)
-    {
-      try
-      {
-        ServicePointManager.SecurityProtocol = type;
-
-        HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url);
-        using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-        { 
-
-          if (type == SecurityProtocolType.Ssl3)
-          {
-            Console.WriteLine("-------------------- SSL3 ------------------");
-          }
-
-          Console.WriteLine(response.StatusCode);
-        }
-      }
-        catch (WebException ex)
-        {
-          Console.WriteLine(ex.Message);
-        }
-    }
-
-    static void Main(string[] args)
-    {
-      ServicePointManager.ServerCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
-
-      Program p = new Program();
-
-      string url = "https://192.168.1.195";
-
-      int step = 0;
-      while (true)
-      {
-        Console.WriteLine(step);
-        p.scan(url, SecurityProtocolType.Ssl3);
-        p.scan(url, SecurityProtocolType.Tls);
-        step++;
-      }
-    }
-  }
-}
+SSLProtocol SSLv3 TLSv1
 ```
 
-What is the program's output  ?
-```
-0
-The request was aborted: Could not create SSL/TLS secure channel.
-OK
-1
--------------------- SSL3 ------------------
-OK
-OK
-2
--------------------- SSL3 ------------------
-OK
-OK
-3
--------------------- SSL3 ------------------
-OK
-OK
-4
--------------------- SSL3 ------------------
-OK
-OK
-5
--------------------- SSL3 ------------------
-OK
-OK
-```
-
-Then, the first SSL3 attempt failed and since we successfully opened a connection on our sever with TLS1, EVERY requests succeed !! (independtly of SSL 3 nor TLS 1.0. Wow ... So what is the conclusion : It seems there is a connection pool behind that. And we can conclude SSL version is not a parameter the endpoints cache mechanism.
-
-Ok, to disable that, we can close EACH requests by doing this :
-
-```c#
-request.KeepAlive = false;
-```
-
-We can then experience some performance issues :
-> http://arnosoftwaredev.blogspot.fr/2006/09/net-20-httpwebrequestkeepalive-and.html
-
-There is a second distrubing point. **ServicePointManager** is a static instance whose aim is to create Endpoints regarding different parameters :
-
- - Uri
- - Port
- - SSL / TLS
-
-In our modern pultiu threaded applications, this deisng is not applicable. Since we only have a static instance, we cannot configure an URI to use a specific version of SSL protocol like this way for example
-
-```c#
-HttpWebRequest request = (HttpWebRequest)HttpWebRequest.CreateHttps(url, SSLv3);
-```
-
-The only way to do it expressed by Microsoft is doing an app-domain for each calls. What a mess(l) !!
-Of course, all microsoft implemetation are affected : FTP, Http, SMTPClient, ...
-
-## Conclusion
-
-In a real time / multiu threaded application using high level protocols such as Http, Ftp, Smtp ... .net implementation is not usable. With the explosion of REST Api everywhere and SSL issues found, we will face to some big issues on tools using .net framework.
+And you want to test individually each SSL type, we can modify our existing code like that :
