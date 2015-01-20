@@ -222,7 +222,7 @@ OK
 OK
 ```
 
-Then, the first SSL3 attempt failed and since we successfully opened a connection on our sever with TLS1, EVERY requests succeed !! (independtly of SSL 3 nor TLS 1.0. Wow ... So what is the conclusion : It seems there is a connection pool behind that. And we can conclude SSL version is not a parameter the endpoints cache mechanism.
+Then, the first SSL3 attempt failed and since we successfully opened a connection on our sever with TLS1, EVERY requests succeed !! (independtly of SSL 3 nor TLS 1.0. Wow ... So what is the conclusion : It seems there is a connection pool behind that. We can conclude SSL protocol version is not a parameter in the endpoints cache mechanism.
 
 Ok, to disable that, we can close EACH requests by doing this :
 
@@ -233,21 +233,21 @@ request.KeepAlive = false;
 We can then experience some performance issues :
 > http://arnosoftwaredev.blogspot.fr/2006/09/net-20-httpwebrequestkeepalive-and.html
 
-There is a second distrubing point. **ServicePointManager** is a static instance whose aim is to create Endpoints regarding different parameters :
+There is a second disturbing point. **ServicePointManager** is a static instance whose aim is to create Endpoints regarding different parameters :
 
  - Uri
  - Port
  - SSL / TLS
 
-In our modern pultiu threaded applications, this deisng is not applicable. Since we only have a static instance, we cannot configure an URI to use a specific version of SSL protocol like this way for example
+In our modern pultiu threaded applications, this desing is not applicable. Since we only have a static instance, we cannot configure an URI to use a specific version of SSL protocol like this way for example
 
 ```c#
 HttpWebRequest request = (HttpWebRequest)HttpWebRequest.CreateHttps(url, SSLv3);
 ```
 
 The only way to do it expressed by Microsoft is doing an app-domain for each calls. What a mess(l) !!
-Of course, all microsoft implemetation are affected : FTP, Http, SMTPClient, ...
+Of course, all microsoft implemetation are affected : Ftp, Http, SMTPClient, ...
 
 ## Conclusion
 
-In a real time / multiu threaded application using high level protocols such as Http, Ftp, Smtp ... .net implementation is not usable. With the explosion of REST Api everywhere and SSL issues found, we will face to some big issues on tools using .net framework.
+In a real time / multi threaded applications using high level protocols such as Http, Ftp, Smtp ... .net implementation is not usable. I do not really know if Microsoft developpers use their own APIs. With the explosion of REST Api everywhere and SSL issues found, we will face to some big issues on tools using .net framework.
