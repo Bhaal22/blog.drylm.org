@@ -1,7 +1,7 @@
 <!-- 
 .. title: Microsoft SSL implementation usage is a mess(l)
 .. slug: microsoft_ssl
-.. date: 2014-01-15 00:00:00 UTC
+.. date: 2015-01-15 00:00:00 UTC
 .. tags: .net,mirosoft,programming,ssl
 .. link: 
 .. description:Microsoft SSL usage is complteley a mess 
@@ -18,7 +18,10 @@ Since the different applicative protocols can run with or without SSL, servers m
 
 Above a description of the handshake between a client and a server running TLS (or SSL)
 
-![](https://cdn.monetizejs.com/resources/button-32.png)
+<!-- TEASER_END -->
+![](/galleries/ssl/ssl_handhsake.png)
+
+
 
 TLS/SSL history
 ----
@@ -26,13 +29,13 @@ TLS/SSL history
 Regarding [SSL wikipedia page](http://en.wikipedia.org/wiki/Transport_Layer_Security) this protocol has a long history with various versions :
 
 |                  |                         |
- ----------------- | ------------------------|
-| SSL 2.0          | 1995                    | 
-| SSL 3.0          | 1996                    |
-| TLS 1.0          | 1999                    |
-| TLS 1.1          | 2006                    |
-| TLS 1.2          | 2008                    |
-| TLS 1.3          | Next ...                |
+|:-----------------|:------------------------
+| `SSL 2.0`          | 1995                    | 
+| `SSL 3.0`          | 1996                    |
+| `TLS 1.0`          | 1999                    |
+| `TLS 1.1`          | 2006                    |
+| `TLS 1.2`          | 2008                    |
+| `TLS 1.3`          | Next ...                |
 
 If we look at the TLS 1.0 specification, an implementation can downgrade automatically from TLS 1.0 to SSL 3.0.
 
@@ -43,7 +46,7 @@ For the purpose of this article we will have a look at the implementation regard
 
 Here is a simple snippet code using this class :
 
-```c#
+```
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -76,7 +79,7 @@ Suppose now you want to get response from an internal web site under IP address 
 > The underlying connection was closed: Could not establish trust relationship for the SSL/TLS secure channel.
 
 Ok, we can easily fix that with this line of code :
-```c#
+```
 ServicePointManager.ServerCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
 ```
 
@@ -118,7 +121,7 @@ And now we get the following **WebException**
 >The request was aborted: Could not create SSL/TLS secure channel.
 
 Ok, after some little researches on google redirecting on stackoverflow, we get the response why this behavior. We need to add this line to our piece of code :
-```c#
+```
 ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
 
 /** Default value is : SSL3 | TLS which means an automatic fallback from TLS 1.0 to SSL 3.0 if needed **/
@@ -138,7 +141,7 @@ Good, it works well. Suppose now you want to test that SSL3 never works on your 
 
 We can modify our existing code like that :
 
-```c#
+```
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -226,7 +229,7 @@ Then, the first SSL3 attempt failed and since we successfully opened a connectio
 
 Ok, to disable that, we can close EACH requests by doing this :
 
-```c#
+```
 request.KeepAlive = false;
 ```
 
@@ -241,7 +244,7 @@ There is a second disturbing point. **ServicePointManager** is a static instance
 
 In our modern pultiu threaded applications, this desing is not applicable. Since we only have a static instance, we cannot configure an URI to use a specific version of SSL protocol like this way for example
 
-```c#
+```
 HttpWebRequest request = (HttpWebRequest)HttpWebRequest.CreateHttps(url, SSLv3);
 ```
 

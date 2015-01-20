@@ -93,13 +93,11 @@ TRANSLATIONS_PATTERN = "{path}.{lang}.{ext}"
 # (the same way you would do with a (translatable) setting.)
 NAVIGATION_LINKS = {
     DEFAULT_LANG: (
-#        ("/archive.html", "Archive"),
-#        ("/categories/index.html", "Tags"),
-#        ("/rss.xml", "RSS feed"),
 	('/index.html', 'Home', 'icon-home'),
 	('/archive.html', 'Archives', 'icon-folder-open-alt'),
 	('/categories/index.html', 'Tags', 'icon-tags'),
 	('/rss.xml', 'RSS', 'icon-rss'),
+	('/galleries/index.html', 'Galleries', 'icon-file'),
 	('http://jonathan.muller.drylm.org', 'CV', 'icon-user'),
 	('https://twitter.com/Bhaal22', 'My Twitter', 'icon-twitter'),
         ('https://github.com/Bhaal22', 'My Github', 'icon-github'),
