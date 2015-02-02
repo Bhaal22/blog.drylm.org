@@ -21,8 +21,7 @@
 ###Java Installation###
 After launching executable installation file just set **JAVA_HOME** environment variable :
 
-> JAVA_HOME=${java_installation_dir}
-
+> JAVA_HOME=$java_installation_dir
 ###Build Hadoop Distribution###
 
  * add maven binary directory into your **PATH** environment variable
@@ -30,10 +29,10 @@ After launching executable installation file just set **JAVA_HOME** environment 
  >cd hadoop-2.6.0-src
  >mvn package -Pdist,native-win -DskipTests -Dtar
 
- The last command compiles java libraries **AND** binary dynamic libraries. That's why maven command **MUST** be launches in a Visual Studio compiler shell.
+ The last command compiles java libraries **AND** binary dynamic libraries. Thats why maven command **MUST** be launches in a Visual Studio compiler shell.
 Then you should have some issues like this one :
 
->[ERROR] Failed to execute goal org.apache.hadoop:hadoop-maven-plugins:2.4.0:protoc (compile-protoc) on project hadoop-common: org.apache.maven.plugin.MojoExecutionException: 'protoc --version' did not return a version -> [Help 1]
+>[ERROR] Failed to execute goal org.apache.hadoop:hadoop-maven-plugins:2.4.0:protoc (compile-protoc) on project hadoop-common: org.apache.maven.plugin.MojoExecutionException: "protoc --version" did not return a version -> [Help 1]
 
  Indeed some dependencies are missing :
  > Protoc : https://developers.google.com/protocol-buffers/docs/downloads
