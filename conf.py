@@ -23,8 +23,6 @@ BLOG_TITLE = "Scrum Programming"  # (translatable)
 # in a prominent link
 SITE_URL = "http://blog.drylm.org/"
 # This is the URL where nikola's output will be deployed.
-# If not set, defaults to SITE_URL
-# BASE_URL = "http://getnikola.com/"
 BLOG_EMAIL = "muller.john@gmail.com"
 BLOG_DESCRIPTION = "By developer for developer" #(translatable)
 
@@ -281,7 +279,7 @@ COMPILERS = {
 #
 # If you don't need any of these, just set to []
 REDIRECTIONS = []
-
+WRITE_TAG_CLOUD = True;
 # Commands to execute to deploy. Can be anything, for example,
 # you may use rsync:
 # "rsync -rav --delete output/ joe@my.site:/srv/www/site"
