@@ -46,6 +46,8 @@ For the purpose of this article we will have a look at the implementation regard
 
 Here is a simple snippet code using this class :
 
+.. listing:: simple.cs c#
+
 ```
 using System;
 using System.Collections.Generic;
