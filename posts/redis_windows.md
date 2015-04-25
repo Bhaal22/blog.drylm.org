@@ -30,7 +30,7 @@ Redis is running natively on Linux or other *Nix systems but there is a group at
 
 The main difference in running Redis on Windows, it that by design, Windows does not have native ***fork*** process API. This process is used when dumping Redis content to file system when performing dumps. Regarding this [issue](https://github.com/MSOpenTech/redis/issues/83) on Github :
 
-  *Redis uses the fork() UNIX system API to create a point-in-time snapshot of the data store for storage to disk. This impacts several features on Redis: AOF/RDB backup, master-slave synchronization, and clustering. Windows does not have a fork-like API available, so we have had to simulate this behavior by placing the Redis heap in a memory mapped file that can be shared with a child(quasi-forked) process. By default we set the size of this file to be equal to the size of physical memory. In order to control the size of this file we have added a maxheap flag. * 
+  *Redis uses the fork() UNIX system API to create a point-in-time snapshot of the data store for storage to disk. This impacts several features on Redis: AOF/RDB backup, master-slave synchronization, and clustering. Windows does not have a fork-like API available, so we have had to simulate this behavior by placing the Redis heap in a memory mapped file that can be shared with a child(quasi-forked) process. By default we set the size of this file to be equal to the size of physical memory. In order to control the size of this file we have added a maxheap flag.* 
 
 So redis on Windows is generating a file :
 
