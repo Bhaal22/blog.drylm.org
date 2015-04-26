@@ -34,7 +34,7 @@ The main difference in running Redis on Windows, it that by design, Windows does
 
 So redis on Windows is generating a file :
 
- -  RedisQFork.dat : 500 Mb for a 32 bits version
+ - RedisQFork.dat : 500 Mb for a 32 bits version
  - RedisQFork.dat : Size of RAM for a 64 bits version
 
 On a particular development at [GSX](http://gsx.com) we used [StackExchange.Redis](https://github.com/StackExchange/StackExchange.Redis) c# client library and we encountered some little strange behaviors on Redis commands execution timeout occuring some times. After researchs, we found out it was due to the time of dumping memory on disk while the fork process.
