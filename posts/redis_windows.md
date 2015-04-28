@@ -4,7 +4,7 @@
 .. date: 2015-04-26 00:00:00 UTC
 .. tags: devops,redis,windows,nosql
 .. link: 
-.. description:
+.. description:How to run and build Redis on Windows
 .. type: text
 -->
 
