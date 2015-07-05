@@ -105,4 +105,4 @@ This code was running perfectly for almost 2 or 3 years. Recently we noticed cha
 
 ![](/galleries/powershell/PowerShellIssue.jpg)
 
-As we can see on the screenshot, we got a *PSRemotingTransportException* with a very tricky error message with a SOAP envelop issue. As you can see on the screenshot, the sessin is still in a correct opened state. Those errors occur since 2 or 3 months approximatively.
+As we can see on the screenshot, we got a *PSRemotingTransportException* with a very tricky error message with a SOAP envelop issue. As you can see on the screenshot, the sessin is still in a correct opened state. Those errors occur since 2 or 3 months approximatively. We can reproduce easily on all Remote PowerShell endpoints : Lync, Sharepoint and even on raw wsman endpoint.
