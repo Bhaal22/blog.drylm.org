@@ -287,7 +287,7 @@ WRITE_TAG_CLOUD = True;
 # plugin (`nikola install_plugin ping`).
 # To do manual deployment, set it to []
 DEPLOY_COMMANDS = {
-  'default': ["cp -r output /tmp/blog"]
+  'default': ["cp -r output/* /var/www/blog.drylm.org", "chown -R http:http /var/www/blog.drylm.org"]
 }
 
 # For user.github.io/organization.github.io pages, the DEPLOY branch
