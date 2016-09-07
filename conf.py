@@ -18,13 +18,13 @@ import time
 
 # Data about this site
 BLOG_AUTHOR = "Jonathan Muller"  # (translatable)
-BLOG_TITLE = "Scrum Programming"  # (translatable)
+BLOG_TITLE = "Drylm - Thoughts from the void."  # (translatable)
 # This is the main URL for your site. It will be used
 # in a prominent link
 SITE_URL = "http://blog.drylm.org/"
 # This is the URL where nikola's output will be deployed.
 BLOG_EMAIL = "muller.john@gmail.com"
-BLOG_DESCRIPTION = "By developer for developer" #(translatable)
+BLOG_DESCRIPTION = "By developer for developer. Scrum Programming" #(translatable)
 
 # Nikola is multilingual!
 #
