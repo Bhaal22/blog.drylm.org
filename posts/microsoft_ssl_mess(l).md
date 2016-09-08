@@ -2,7 +2,7 @@
 .. title: Microsoft SSL implementation usage is a mess(l)
 .. slug: microsoft_ssl
 .. date: 2015-01-15 00:00:00 UTC
-.. tags: .net, microsoft, ssl, c#, ntwork security
+.. tags: .net, microsoft, ssl, c#, network security
 .. category: programming
 .. link: 
 .. description:Microsoft SSL usage is complteley a mess.
