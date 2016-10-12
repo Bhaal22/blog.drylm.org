@@ -1,7 +1,7 @@
 <!-- 
 .. title: Skype For Business SDK Prerequisites
 .. slug: skype-for-business-sdk-prerequisites.md
-.. date: 2016-10-07 08:00:00 UTC
+.. date: 2016-10-13 08:00:00 UTC
 .. tags: .net, c#, microsoft, skype for business, skype, office365, powershell, 2016
 .. category: programming
 .. link: 
