@@ -2,9 +2,9 @@
 .. title: Microsoft PowerShell issues
 .. slug: microsoft_powershell
 .. date: 2015-07-04 00:00:00 UTC
-.. tags: .net,powershell
+.. tags: .net, powershell, c#
 .. link: 
-.. description:Microsoft PowerShell problems
+.. description:Microsoft PowerShell problems while running on c# applications
 .. type: text
 -->
 
