@@ -1,17 +1,17 @@
 <!-- 
 .. title: Skype For Business SDK Prerequisites
-.. slug: skype-for-business-sdk-prerequisites.md
-.. date: 2016-10-13 08:00:00 UTC
-.. tags: .net, c#, microsoft, skype for business, skype, office365, powershell, 2016
+.. slug: skype-for-business-sdk-prerequisites
+.. date: 2016-10-12 01:00:00 UTC
+.. tags: .net, c&#35;, microsoft, skype for business, skype, office365, powershell, 2016
 .. category: programming
 .. link: 
-.. description: How to setup Skype For Business 2016 to be used in a c# application
+.. description: How to setup Skype For Business 2016 to be used in a c&#35; application
 .. type: text
 -->
 
 ###Introduction
 
-It could be a good idea to drive **Skype for business 2016** from a c# application.
+It could be a good idea to drive **Skype for business 2016** from a c&#35; application.
 There a couple of use cases:
 <!-- TEASER_END -->
 
@@ -40,7 +40,7 @@ To achieve that, 2 registry keys must be set :
 "UISuppressionMode"=dword:00000001
 ```
 
-While playing with c# Skype SDK, I have discovered an issue when the application tried to disconnect.
+While playing with c&#35; Skype SDK, I have discovered an issue when the application tried to disconnect.
 
 Skype has a weird behavior which was a kind of impediment in my use case. I had a couple of credentials to test indefinitely, I mean connections with different users to skype.
 
@@ -73,5 +73,5 @@ Moreover, I have writter a powershell script to check pre requisites for **Lync 
 
 [Skype For Business Pre requisites checks script](https://github.com/Bhaal22/skype-for-business-checks/blob/master/skype_for_business_prerequisites.ps1)
 
-In the next article on this subject, we will explore a bit the c# APIs.
+In the next article on this subject, we will explore a bit the c&#35; APIs.
 
