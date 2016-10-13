@@ -1,4 +1,4 @@
 Motivations
 ============
 
-http://blog.drylm.org/posts/skype-for-business-sdk-prerequisites.html
+Personal blog markdown files and resources
