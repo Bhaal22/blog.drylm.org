@@ -2,9 +2,10 @@
 .. title: Developpement Dreamcast part1.
 .. slug: developpement-dreamcast-part1
 .. date: 2014-10-17 19:57:36 UTC
-.. tags: dreamcast, gcc, toolchain, linux, C++
+.. tags: dreamcast, gcc, toolchain, linux, C++, kallistios, kos, kallisti os
+.. category: programming
 .. link: 
-.. description: 
+.. description: Tutoriel de la mise en place d'un environnement de programmation dreamcast 
 .. type: text
 -->
 
