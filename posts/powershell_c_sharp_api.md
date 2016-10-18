@@ -4,7 +4,7 @@
 .. date: 2015-07-04 00:00:00 UTC
 .. tags: .net, powershell, c#
 .. link: 
-.. description:Microsoft PowerShell problems while running on c# applications
+.. description: Microsoft PowerShell problems while running c&#35; applications
 .. type: text
 -->
 

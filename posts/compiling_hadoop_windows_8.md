@@ -2,9 +2,9 @@
 .. title: How-to compile Hadoop on Windows 8
 .. slug: how-to-compile-hadoop-on-windows-height
 .. date: 2015-02-02 00:00:00 UTC
-.. tags: howto,hadoop,java,big data
+.. tags: howto, hadoop, java, big data, windows 8
 .. link: 
-.. description:
+.. description: How to compile hadoop on windows 8
 .. type: text
 -->
 

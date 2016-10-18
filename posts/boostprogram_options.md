@@ -4,7 +4,7 @@
 .. date: 2014-10-13 04:05:32 UTC
 .. tags: C++,boost,tutorial,programming
 .. link: 
-.. description:Brief tutorial on how to use boost::program_options library 
+.. description: Brief tutorial on how to use boost::program_options library 
 .. type: text
 -->
 
