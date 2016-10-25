@@ -5,7 +5,7 @@
 .. tags: .net, microsoft, ssl, c&#35;, network security
 .. category: programming
 .. link: 
-.. description: Microsoft SSL usage is complteley a mess
+.. description: Microsoft SSL usage is completely a mess
 .. type: text
 -->
 
