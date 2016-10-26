@@ -24,7 +24,7 @@ BLOG_TITLE = "Drylm - Thoughts from the void."  # (translatable)
 SITE_URL = "http://blog.drylm.org/"
 # This is the URL where nikola's output will be deployed.
 BLOG_EMAIL = "muller.john@gmail.com"
-BLOG_DESCRIPTION = "Drylm Organization. By developer for developer. Scrum Programming" #(translatable)
+BLOG_DESCRIPTION = "Drylm is a software craftmen orgzanization built by developer for developers. Drylm is involded in agile and scrum practising the Scrum Programming" #(translatable)
 
 # Nikola is multilingual!
 #
