@@ -5,7 +5,7 @@
 .. tags: dreamcast, gcc, toolchain, linux, C++, kallistios, kos, kallisti os
 .. category: programming
 .. link: 
-.. description: Tutoriel de la mise en place d&quot;un environnement de programmation dreamcast
+.. description: Tutoriel d&#39;aide &Agrave; la construction d&#39; toolchain gcc pour dreamcast. Cet article met en place &Eacute;galement les outils n&Eacute;cessaires pour transf&Eacute;rer les binaires compil&Eacute;s
 .. type: text
 -->
 

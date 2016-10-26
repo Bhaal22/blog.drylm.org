@@ -5,7 +5,7 @@
 .. tags: scrum, agile, scrum practices, agile manifesto
 .. link:
 .. category: agile
-.. description: Various thoughts about Scrum and hisapplications. Scrum Sprint wording.
+.. description: What is behind the scrum wording : Sprint? I try to explain my visions and why this wording is wrong.
 .. type: text
 -->
 

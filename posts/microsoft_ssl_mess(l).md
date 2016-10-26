@@ -2,10 +2,10 @@
 .. title: Microsoft SSL implementation usage is a mess(l)
 .. slug: microsoft_ssl
 .. date: 2015-01-15 00:00:00 UTC
-.. tags: .net, microsoft, ssl, c&#35;, network security
+.. tags: .net, microsoft, ssl, c&#35;, network security, ssl
 .. category: programming
 .. link: 
-.. description: Microsoft SSL usage is completely a mess
+.. description: Microsoft HttpWebRequest is really a mess. The SSL context cannot be shared accross threahs in a .net program
 .. type: text
 -->
 

@@ -4,7 +4,7 @@
 .. date: 2015-02-02 00:00:00 UTC
 .. tags: howto, hadoop, java, big data, windows 8
 .. link: 
-.. description: How to compile hadoop on windows 8
+.. description: This is a simple tutorial on how to build hadoop binary on windows 8 machine
 .. type: text
 -->
 

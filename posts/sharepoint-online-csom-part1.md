@@ -5,7 +5,7 @@
 .. tags: .net, microsoft, office365, sharepoint, sharepoint online, c#
 .. category: programming
 .. link: 
-.. description: How to interact with a remote SharePoint Online site and perform automatic process
+.. description: Tutorial on how to interact with a remote SharePoint Online site with c sharp and how to perform automatic processes like connectiong to a site with CSOM Apis
 .. type: text
 -->
 
