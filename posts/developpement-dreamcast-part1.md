@@ -32,7 +32,7 @@ passons en revue quelques informations techniques de la console.</p>
 
 ##2. Historique et Hardware##
 
-<img src="/galleries/dreamcast/dreamcast.png" />
+<img src="/galleries/dreamcast/dreamcast.png" alt="La Dreamcast, sa manette et sa carte mémore"/>
 <p class="legende">Figure 1&nbsp;: La Dreamcast, sa manette et la carte m&eacute;moire</p>
 
 <p class="normal">Sortie en novembre 1998 au Japon, la Dreamcast est disponible en Europe et aux Etats-unis &agrave; partir de No&euml;l 1999. Sega(tm) frappe fort avec sa nouvelle console 128 bits (contre 32
