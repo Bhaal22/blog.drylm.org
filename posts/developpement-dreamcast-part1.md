@@ -14,10 +14,9 @@
 Mise en place et &eacute;tude du d&eacute;veloppement Dreamcast
 ==
 
-*Jonathan Muller* - muller.john@gmail.com</p>
-
 C'est lors d'une install party &agrave; Metz que j'ai rencontr&eacute; une personne qui lan&ccedil;ait un rendu de Tux sur un &eacute;cran g&eacute;ant &agrave; partir de sa Dreamcast. C'est de l&agrave; que m'est venue l'id&eacute;e de d&eacute;velopper pour cette console que j'adore.
 
+<!-- TEASER_END -->
 ## 1. Introduction &agrave; la Dreamcast##
 
 <p class="normal">Qui ne conna&icirc;t pas des titres comme SoulCalibur, Skies of Arcadia, Grandia 2, Sonic adventure, ou encore le magnifique Shenmue .. Vous me suivez, je vais vous parler de la Dreamcast.
@@ -30,7 +29,6 @@ J'en arrive au but de cet article : mettre en place un environnement de compilat
 de d&eacute;veloppement dev-cpp, mais je n'aborderai pas ce type d'installation.<br />Avant toute explication concernant l'installation de l'environnement,
 passons en revue quelques informations techniques de la console.</p>
 
-<!-- TEASER_END -->
 
 ##2. Historique et Hardware##
 
