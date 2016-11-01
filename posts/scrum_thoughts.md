@@ -1,11 +1,11 @@
 <!-- 
 .. title: Scrum thoughts & Applications
-.. slug: scrum_thoughts
+.. slug: scrum-thoughts
 .. date: 2016-09-01 00:00:00 UTC
 .. tags: scrum, agile, scrum practices, agile manifesto
 .. link:
 .. category: agile
-.. description: What is behind the scrum wording : Sprint? I try to explain my visions and why this wording is wrong.
+.. description: What is behind the scrum wording : Sprint? Explanation of my vision and why Scrum Sprint is a wrong wording.
 .. type: text
 -->
 

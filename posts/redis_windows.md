@@ -1,6 +1,6 @@
 <!-- 
 .. title: Redis running on Windows
-.. slug: redis_on_windows
+.. slug: redis-on-windows
 .. date: 2015-04-26 00:00:00 UTC
 .. tags: devops, redis, windows, nosql
 .. link: 
