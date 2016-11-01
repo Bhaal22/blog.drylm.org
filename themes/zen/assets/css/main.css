@@ -2430,6 +2430,18 @@ pre.code {
 .post h1.title a:focus {
   color: inherit;
 }
+
+.post h2.title {
+  margin: 6px 0;
+}
+.post h2.title a {
+  color: inherit;
+}
+.post h2.title a:hover,
+.post h2.title a:focus {
+  color: inherit;
+}
+
 .post .backlink {
   margin-top: 6px;
 }

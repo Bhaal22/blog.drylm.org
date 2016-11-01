@@ -760,7 +760,7 @@ LISTINGS_FOLDERS = {'listings': 'listings', 'code': 'formatted-code'}
 # past.  Useful especially if your post titles are in <h1> tags too, for
 # example.
 # (defaults to 1.)
-DEMOTE_HEADERS = 1
+DEMOTE_HEADERS = 2
 
 # You can configure the logging handlers installed as plugins or change the
 # log level of the default stderr handler.
