@@ -1,6 +1,6 @@
 <!-- 
 .. title: Microsoft SSL implementation usage is a mess(l)
-.. slug: microsoft_ssl
+.. slug: microsoft-ssl
 .. date: 2015-01-15 00:00:00 UTC
 .. tags: .net, microsoft, ssl, c&#35;, network security, ssl
 .. category: programming
@@ -13,7 +13,7 @@
 
 
 TLS/SSL Description
-----
+==
 
 Since the different applicative protocols can run with or without SSL, servers must expose dedicated port (443 for https) or switch (STARTTLS in SMTP, POP, NNTP)
 
@@ -25,7 +25,7 @@ Above a description of the handshake between a client and a server running TLS (
 
 
 TLS/SSL history
-----
+==
 
 Regarding [SSL wikipedia page](http://en.wikipedia.org/wiki/Transport_Layer_Security) this protocol has a long history with various versions :
 
@@ -41,7 +41,7 @@ Regarding [SSL wikipedia page](http://en.wikipedia.org/wiki/Transport_Layer_Secu
 If we look at the TLS 1.0 specification, an implementation can downgrade automatically from TLS 1.0 to SSL 3.0.
 
 Microsoft .net applicative protocols implementation
----
+==
 
 For the purpose of this article we will have a look at the implementation regarding the [**HttpWebRequest**](http://msdn.microsoft.com/fr-fr/library/system.net.httpwebrequest%28v=vs.110%29.aspx) class from the **System.Net** namespace.
 
@@ -90,7 +90,8 @@ With this piece of code, our client program will accept ANY certificates (can be
 
 In the last months, some hackers have found issues in OpenSSL implementation and the main issue in SSL3.0 has been found by some Google engineers. This security hole has the name [Poodle](http://en.wikipedia.org/wiki/POODLE)
 
-### POODLE
+POODLE
+==
 
 It results of a man in a middle attack on TLS to SSL 3.0 fallback. Check wikipedia page for more tehcnical information. With this serious issue, it results some guidelines :
 
@@ -254,6 +255,7 @@ HttpWebRequest request = (HttpWebRequest)HttpWebRequest.CreateHttps(url, SSLv3);
 The only way to do it expressed by Microsoft is doing an app-domain for each calls. What a mess(l) !!
 Of course, all microsoft implemetation are affected : Ftp, Http, SMTPClient, ...
 
-## Conclusion
+Conclusion
+==
 
 In a real time / multi threaded applications using high level protocols such as Http, Ftp, Smtp ... .net implementation is not usable. I do not really know if Microsoft developpers use their own APIs. With the explosion of REST Api everywhere and SSL issues found, we will face to some big issues on tools using .net framework.

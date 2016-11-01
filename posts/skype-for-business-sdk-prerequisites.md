@@ -9,7 +9,8 @@
 .. type: text
 -->
 
-###Introduction
+Introduction
+==
 
 It could be a good idea to drive **Skype for business 2016** from a c&#35; application.
 There a couple of use cases:
@@ -24,7 +25,8 @@ To develop application driving Skype for business, at some point you have to dow
   * [Lync 2013 SDK](https://www.microsoft.com/en-us/download/details.aspx?id=36824)
   * [Skype For Business 2016](https://www.microsoft.com/en-us/download/details.aspx?id=49440)
 
-###Setup
+Setup
+==
 
 For your application to be run correctly you have to setup a couple of registry keys. Once **Skype For Business** is installed, when you launch it, skype process starts with a nice user interface asking you to login.
 

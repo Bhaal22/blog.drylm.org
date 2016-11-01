@@ -1,5 +1,5 @@
 <!-- 
-.. title: Developpement Dreamcast part1.
+.. title: Environnement de developpement Dreamcast
 .. slug: developpement-dreamcast-part1
 .. date: 2014-10-17 19:57:36 UTC
 .. tags: dreamcast, gcc, homebrew, toolchain, linux, C++, kallistios, kos, kallisti os

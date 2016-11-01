@@ -9,7 +9,8 @@
 .. type: text
 -->
 
-###Introduction
+Introduction
+==
 
 Client Side Object Model (CSOM) was first introduced in SharePoint 2010. The Client Side Object Model is mainly used to build client applications and enable programs to access SharePoint Sites that are hosted outside without using web services. Before CSOM existence, developpers had no choice using SOAP web services.
 <!-- TEASER_END -->

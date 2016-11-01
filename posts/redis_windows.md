@@ -8,7 +8,9 @@
 .. type: text
 -->
 
-###Introduction###
+Introduction
+==
+
 [Redis](http://redis.io) is the famous NoSQL Key-Value store with a very simple interface :
 
  * Get / Set : on simple key/values
@@ -21,12 +23,14 @@ Then you can really try easily the command line interface through a [website](ht
 
 Redis is running natively on Linux or other *Nix systems but there is a group at Microsoft working on porting Redis on Windows and mainly on Microsoft Azure. Microsoft added recently the distributed cache service on their Azure platform with Redis.
 
-### Compile ###
+Compile
+==
 
  * Have at least Visual Studio 2010 installed
  * Build Debug / Build Release
 
-### Differences Linux / Windows ###
+Differences Linux / Windows
+==
 
 The main difference in running Redis on Windows, it that by design, Windows does not have native ***fork*** process API. This process is used when dumping Redis content to file system when performing dumps. Regarding this [issue](https://github.com/MSOpenTech/redis/issues/83) on Github :
 

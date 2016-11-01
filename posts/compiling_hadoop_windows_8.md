@@ -9,7 +9,8 @@
 -->
 
 
-### Steps ###
+Steps
+==
 
  * Have at least Visual Studio 2010 installed
  * Install [JDK 1.7](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html) or [OpenJDK](http://openjdk.java.net/install/)
@@ -18,11 +19,15 @@
 
 <!-- TEASER_END -->
 
-###Java Installation###
+Java Installation
+==
+
 After launching executable installation file just set **JAVA_HOME** environment variable :
 
 > JAVA_HOME=$java_installation_dir
-###Build Hadoop Distribution###
+
+Build Hadoop Distribution
+==
 
  * add maven binary directory into your **PATH** environment variable
  In a Visual Studio command prompt :
