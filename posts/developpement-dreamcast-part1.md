@@ -2,10 +2,10 @@
 .. title: Developpement Dreamcast part1.
 .. slug: developpement-dreamcast-part1
 .. date: 2014-10-17 19:57:36 UTC
-.. tags: dreamcast, gcc, toolchain, linux, C++, kallistios, kos, kallisti os
+.. tags: dreamcast, gcc, homebrew, toolchain, linux, C++, kallistios, kos, kallisti os
 .. category: programming
 .. link: 
-.. description: Tutoriel d&#39;aide &Agrave; la construction d&#39; toolchain gcc pour dreamcast. Cet article met en place &Eacute;galement les outils n&Eacute;cessaires pour transf&Eacute;rer les binaires compil&Eacute;s
+.. description: Tutoriel d&#39;aide &Agrave; la construction d&#39; toolchain gcc pour dreamcast. Cet article met en place &Eacute;galement les outils n&Eacute;cessaires pour transf&Eacute;rer les binaires compil&Eacute;s et ainsi participer &agrave; la mouvance homebrew.
 .. type: text
 -->
 
