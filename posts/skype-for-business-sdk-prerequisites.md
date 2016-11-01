@@ -2,7 +2,7 @@
 .. title: Skype For Business SDK Prerequisites
 .. slug: skype-for-business-sdk-prerequisites
 .. date: 2016-10-12 01:00:00 UTC
-.. tags: .net, c&#35;, c sharp, microsoft, skype for business, skype, office365, powershell, 2016
+.. tags: .net, c&#35;, c sharp, microsoft, skype for business, skype, office365, powershell
 .. category: programming
 .. link: 
 .. description: What are the requirements to develop a c sharp application using Skype For Business 2016 microsoft's APIs?

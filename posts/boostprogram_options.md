@@ -2,7 +2,7 @@
 .. title: boost::program_options
 .. slug: boostprogram-options
 .. date: 2014-10-13 04:05:32 UTC
-.. tags: C++ ,boost, tutorial, programming, cli
+.. tags: C++, boost, tutorial, programming, cli
 .. link: 
 .. description: How boost&#58;&#58;program_options library helps developper writing CLI programs 
 .. type: text
