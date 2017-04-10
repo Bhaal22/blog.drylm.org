@@ -5,7 +5,7 @@
 .. tags: .net, c&#35;, c sharp, microsoft, skype for business, skype, office365, powershell
 .. category: programming
 .. link: 
-.. description: What are the requirements to develop a c sharp application using Skype For Business 2016 microsoft's APIs?
+.. description: What are the requirements to develop a c&#35; application using Skype For Business 2016 microsoft's APIs?
 .. type: text
 -->
 
@@ -69,7 +69,7 @@ This operation failed because the QueryInterface call on the COM component for t
 Yeah, it seems Microsoft forget a COM component registration when we deploy **Skype For Business 2016**.
 Fortunately, here is the registry script to fix it :
 
-[Set SignInConfiguration Keys Script](https://github.com/Bhaal22/skype-for-business-checks/blob/master/registry_scripts/sb4-skype4Business%202016.reg)
+[Set SignInConfiguration Keys Script](https://github.com/Bhaal22/skype-for-business-checks/blob/master/registry_scripts/skype_for_business_signin_registration2_patch.reg)
 
 Moreover, I have writter a powershell script to check pre requisites for **Lync 2013** and **Skype For Business 2016**
 
