@@ -1,5 +1,5 @@
 <!-- 
-.. title: Import part or full repository to another repository
+.. title: Import part or full git repository to another repository
 .. slug: import-part-or-full-repository-to-another-repository
 .. date: 2017-07-22 00:00:00 UTC
 .. tags: git, split repository
