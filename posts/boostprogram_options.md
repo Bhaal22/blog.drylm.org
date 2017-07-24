@@ -19,7 +19,7 @@ Command line parameters are described at the start of your program and are used 
 
 <!-- TEASER_END -->
 ### Example
-```
+```c++
 #include <boost/program_options.hpp>
 
 int main (int argc, char **argv)
@@ -34,7 +34,7 @@ int main (int argc, char **argv)
 }
 ```
 
-We described 2 paramaters. The well known **help** option, and an integer parameter.
+We described 2 parameters. The well known **help** option, and an integer parameter.
 This piece of code used like this :
 
     ./main --help
@@ -43,7 +43,7 @@ This piece of code used like this :
 ### Short parameters
 If you want to provide short parameters like `./main -h` it is very easy. Just need to modify the previous code with :
 
-```
+```c++
 ...
 ("help,h", "show help")
 ...
@@ -52,7 +52,7 @@ If you want to provide short parameters like `./main -h` it is very easy. Just n
 ###Default value
 Of course we can provide default value for a specific flag. Suppose you want to have by default your recursive level set to 5.
 
-```
+```c++
 ...
 ("level", po::value<int>()->default_value(5), "Recursive level")
 ...
@@ -61,7 +61,7 @@ Of course we can provide default value for a specific flag. Suppose you want to 
 ###Multiple values
 Suppose now for a specific flag, you would like to be able to specify multiple values such as `--flag f1 f2 f3`. Easy ! Just need to specifiy a `std::vector`
 
-```
+```c++
 ("file_pattern", po::value<std::string>()->default_value(".*"), "Pattern on which performing checksum")
 ```
 Very easy !
@@ -76,7 +76,7 @@ po::parsed_options parsed =
 
 And to check in your program, it a parameter is set or not :
 
-```
+```c++
 int level;
 if (vm.count("level"))
 {
