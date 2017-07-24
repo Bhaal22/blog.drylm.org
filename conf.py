@@ -427,7 +427,6 @@ INDEX_TEASERS = True
 # 'Read more...' for the index page, if INDEX_TEASERS is True (translatable)
 INDEX_READ_MORE_LINK = '<p class="more"><a href="{link}">{read_more}…</a></p>'
 # 'Read more...' for the RSS_FEED, if RSS_TEASERS is True (translatable)
-RSS_READ_MORE_LINK = '<p><a href="{link}">{read_more}…</a> ({min_remaining_read})</p>'
 
 # A HTML fragment describing the license, for the sidebar.
 # (translatable)
@@ -737,7 +736,7 @@ UNSLUGIFY_TITLES = True
 
 # If webassets is installed, bundle JS and CSS to make site loading faster
 USE_BUNDLES = True
-LISTINGS_FOLDERS = {'listings': 'listings', 'code': 'formatted-code'} 
+LISTINGS_FOLDERS = {'listings': 'listings', 'code': 'formatted-code'}
 
 # Plugins you don't want to use. Be careful :-)
 # DISABLED_PLUGINS = ["render_galleries"]
