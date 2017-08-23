@@ -21,7 +21,7 @@ BLOG_AUTHOR = "Jonathan Muller"  # (translatable)
 BLOG_TITLE = "Drylm - Thoughts from the void."  # (translatable)
 # This is the main URL for your site. It will be used
 # in a prominent link
-SITE_URL = "http://blog.drylm.org/"
+SITE_URL = "https://blog.drylm.org/"
 # This is the URL where nikola's output will be deployed.
 BLOG_EMAIL = "muller dot john at gmail.com"
 BLOG_DESCRIPTION = "Drylm is a software craftmen orgzanization built by developer for developers. Drylm is involded in agile and scrum practising the Scrum Programming" #(translatable)
@@ -676,7 +676,7 @@ BODY_END = """
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-58774827-1', 'auto');
   ga('send', 'pageview');
