@@ -12,7 +12,7 @@
 Introduction
 ===
 
-The motivation behing this little project is to provide a unified way to get the Dreamcast toolchain and development tools.
+The motivation behind this little project is to provide a unified way to get the Dreamcast toolchain and development tools.
 <!-- TEASER_END -->
 
   * gcc toolchain : gcc + binutils for SH4 and ARM
