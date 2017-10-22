@@ -47,7 +47,7 @@ any **windowsservercore** or **nanoservercore**:
   * MSMQ
   * .net Remoting
   
-I am pretty sure I am not the only one in this situation and the modernization for free will never work for any of us. But docker team never mentionned that.
+I am pretty sure I am not the only one in this situation and the modernization for free will never work for any of us. 
 MSSQL server dockerization is moreover only available from SQL Server 2017 CTP1 on both linux and windows container technology.
 
 After a ride to RedHat booth:
@@ -71,7 +71,7 @@ A lot of partners, resellers focused their speech:
   * Monitoring (at least 4-5 companies with a booth)
   * Security: Private Repository image scanning and publish the image iif no security holes has been discovered in the base layers of the image.
     
-To my point of view, the last feature should be fully integrated at least in the public docker hub repository and it looks like it is not the case.
+To my point of view, the last feature should be fully integrated at least in the public docker hub repository. Not sure if it will be the case.
 
 
 To conclude this post, this dockercon was really nice even if I expected more from the announcements. Another thing which should be fixed, there was way too many breaks and too long.
