@@ -9,7 +9,7 @@ __pycache__/
 # Distribution / packaging
 .Python
 output/
-.doit.db
+.doit.db*
 cache/
 env/
 build/
