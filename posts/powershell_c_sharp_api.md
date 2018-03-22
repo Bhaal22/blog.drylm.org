@@ -2,7 +2,7 @@
 .. title: Microsoft PowerShell issues
 .. slug: microsoft-powershell-c-sharp
 .. date: 2015-07-04 00:00:00 UTC
-.. tags: .net, powershell, c#
+.. tags: .net, powershell, c#, dotnet
 .. link: 
 .. description: Microsoft PowerShell problems while running c&#35; applications
 .. type: text
