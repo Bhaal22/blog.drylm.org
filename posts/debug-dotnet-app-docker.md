@@ -3,7 +3,7 @@
 .. slug: debug-dotnet-applications-inside-a-docker-container
 .. date: 2018-02-10 09:26:25 UTC
 .. tags: docker, csharp, .net, powershell, c#, fuslogvw
-.. category: 
+.. category: devops
 .. link: 
 .. description: Debug dotnet applications inside a docker container
 .. type: text
