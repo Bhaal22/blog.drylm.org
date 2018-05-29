@@ -2,7 +2,7 @@
 .. title: Rabbitmq and Erlang/OTP Windows Containers
 .. slug: rabbitmq_windows_container
 .. date: 2018-05-29 18:49:32 UTC
-.. tags: erlang, rabbitmq, docker, dockerfile, .net, powershell
+.. tags: erlang, rabbitmq, docker, dockerfile, .net, powershell, multi stages build
 .. category: devops
 .. link: 
 .. description: Windows Docker images for erlang and rabbitmq
