@@ -16,7 +16,7 @@ Here at [Gsx Solutions](http://www.gsx.com) for our full product suite, we highl
 Then, started internal non regression tests. We are fully windows based, then we installed v3.5.4, ran a couple of micro services around the BUS and then upgrade to v3.7.4. We have found a [regression related to 3.5.4 -> 3.7.4 upgrade](https://github.com/rabbitmq/rabbitmq-server/issues/1568). But this process was a bit painful. That's why I decided to build rabbitmq docker images running in [Windows Containers](https://docs.docker.com/docker-for-windows/)
 
 Let's have a look at the anatomy of the docker files. First, I wanted to prepare base images for [erlang-otp](http://www.erlang.org/).
-I host erlang-otp dockerimages on this [github repository](https://github.com/gsx-solutions/erlang-otp-win)
+I host erlang-otp dockerimages on this [github repository](https://github.com/drylm/erlang-otp-win)
 
 As you may know, there are 2 flavors of windows base docker images. You cannot start your image *from scratch* like on linux system.
 
