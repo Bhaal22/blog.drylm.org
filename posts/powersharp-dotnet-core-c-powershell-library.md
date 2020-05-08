@@ -42,10 +42,17 @@ VM                         AliasProperty  VM = VirtualMemorySize64
 ...
 ```
 
+<<<<<<< HEAD
 Let's then get 2 fields, **Name** and **VM**
 
 ```powershell
 Get-Process | Select-Object -Property ProcessName, VM
+=======
+Let's then get 2 fields, **Name** and **Id**
+
+```powershell
+Get-Process | Select-Object -Property Id, Name
+>>>>>>> c40f1ec... powersharp 1/xxx
 ```
 
 ```c#
@@ -62,14 +69,12 @@ class Process
 var shell = new LocalShellInfo();
 
 var initializer = new LocalPSSessionInitializer(shell);
-var powershell = new PowershellRunner(initializer);
-
-DefaultPSProcessor<Process> processor = new DefaultPSProcessor<Process>(process => 
+PSProcessor<Process> processor = new PSProcessor<Process>(process => 
 {
-    Console.WriteLine($"{process.Name}: {process.VirtualMemorySize64}");
+    Console.WriteLine($"{process.Id}: {process.Name}");
 });
 
-using (var powershell = new PowershellRunner(init))
+using (var powershell = new PowershellRunner(initializer))
 {
     try
     {
