@@ -3,7 +3,7 @@
 .. slug: dreamcast-toolchain-docker
 .. date: 2016-11-01 22:10:43 UTC
 .. tags: dreamcast, kallisti os, kos, docker, container, homebrew, dreamcker
-.. category: programing
+.. category: programming
 .. link: 
 .. description: Dreamcker provides all dreamcast development related tools to build homebrew games on linux
 .. type: text
